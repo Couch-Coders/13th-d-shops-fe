@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
 
+import './App.css';
+import React, { useEffect } from 'react'
+import { onAuthStateChanged } from 'firebase/auth'
+import {useDispatch,useSelector} from 'react-redux'
+import Login from './component/Login';
+import { getUserThunk } from './stores/auth/authSlice';
+import { auth } from './service/firebaseAuth';
 function App() {
+  const user = useSelector((state)=>state)
+  console.log(user)
+
+  const dispatch = useDispatch()
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const token = await user.getIdToken()
+        console.log(token)
+        dispatch(getUserThunk(token))
+      }
+    })
+    return unsubscribe
+  }, [dispatch])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Login/>
     </div>
   );
 }
