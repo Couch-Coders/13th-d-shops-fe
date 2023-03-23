@@ -1,38 +1,95 @@
-.App {
+@font-face {
+  font-family: 'SUIT-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'SUIT-Regular';
+}
+.header_right{
+  display: flex;
+  align-items: center;
+  
+}
+.header_inputBox{
+  display: flex;
+  width: 50%;
+}
+.Search{
+  font-size: 1.5rem;
+  color: gray;
+}
+.header_input{
+  width: 100%;
+  height: 20px;
+  padding:15px 10px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  border: 1px solid gray;
+}
+
+.product_list{
+  margin-right: 20px;
+  background-color: #395E97;
+  padding:10px;
+  border:1px solid #395E97;
+  border-radius: 10px;
+  width: 100px;
+  cursor: pointer;
+  box-sizing: border-box;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.product_list_text{
+  text-decoration: none;
+  color:rgb(17, 17, 17);
+  height:  18px;
+  margin-right: 10px;
+  box-sizing: border-box;
+  
+}
+.login_btn{
+  background-color: #395E97;
+  color:white;
+  padding:10px;
+  margin-right: 10px;
+  border:1px solid #395E97;
+  border-radius: 10px;
+  width: 100px;
+  height: 42px;
+  cursor: pointer;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.photoURL{
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 20px;
 }
+.username{
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  color:rgb(74, 74, 74);
+}
+.edit{
+  color:gray;
+  font-size: 1.2rem;
+
+}
+.login_userMenu{
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap:20px;
 }
+/* 메인 */
+.main_img{
+  width: 100%;
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover
 }
