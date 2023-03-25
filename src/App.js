@@ -1,5 +1,6 @@
 
 import './App.css';
+
 import React, { useEffect, useState } from 'react'
 import { onAuthStateChanged } from 'firebase/auth'
 import {useDispatch,useSelector} from 'react-redux'
@@ -17,8 +18,10 @@ import MyPage_List from './page/MyPage_List';
 import Product_Detail from './page/Product_Detail';
 import MyPage from './page/MyPage'
 import Edit from './page/Edit';
+import { QueryClient ,QueryClientProvider } from '@tanstack/react-query';
 function App() {
 
+  const queryClient = new QueryClient();
 
 
   const dispatch = useDispatch()
@@ -35,6 +38,7 @@ function App() {
   }, [dispatch])
   return (
     <div className="App">
+      <QueryClientProvider client={queryClient}>
       <Header />
 
       <Routes>
@@ -45,6 +49,7 @@ function App() {
         <Route path="/edit" element={<Edit/>}></Route>
         <Route path="/mylist" element={<MyPage_List/>}></Route>
       </Routes>
+      </QueryClientProvider>
     </div>
   );
 }

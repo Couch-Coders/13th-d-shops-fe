@@ -5,34 +5,36 @@ const signIn = async ({token}) => {
   const response = await axios.post('/auth',{}, {
     headers: { Authorization: `${token}` },
     withCredentials: true,
-
-    
   })
-
- return response.data
- 
+  return response.data
 }
+
 export const onGetMyInfo = async () => {
-  const response1 = await axios.get("/users/me");
-   console.log(response1.data);
- };
+  const response = await axios.get("/users/me");
+  return response.data
+};
 
-
- export const onUserPut1 = async () => {
+export const onUserPut1 = async () => {
   const responsePut1 = await axios.put(
     "/users/me",
     {
-      name: "name-1",
-      phone: "phone-1",
-      company: {
-        name: "company-name-1",
-        phone: "company-phone-1",
-        email: "company-email-1",
-        address: {
-          name: "company-address-name-1",
-        },
-      },
+      "name": "",
+      "phone": "",
+      "company": {
+    "name": "",
+    "email": "",
+    "phone": "",
+    "address": {
+        "name": null,
+        "post_code": null,
+        "address": null,
+        "extra": null,
+        "detail": null,
+        "location_x": null,
+        "location_y": null
     },
+  }
+},
     {
       withCredentials: true,
     }
@@ -40,7 +42,7 @@ export const onGetMyInfo = async () => {
   console.log(responsePut1.data);
 
   const response1 = await axios.get("/users/me");
-  console.log(response1.data);
+  console.log(response1.data)
 };
 
 const signOut = async () => {
