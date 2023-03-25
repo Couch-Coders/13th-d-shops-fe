@@ -1,26 +1,25 @@
-import  React,{useState} from 'react';
-import DaumPostCode from 'react-daum-postcode';
+import React, { useState } from "react";
+import DaumPostCode from "react-daum-postcode";
 
-   
-    const DaumPost = ({inputs}) => {
-        const [adressAdd,setAddressAdd] =useState()
-        const handleComplete = (data) => {
-            let fullAddress = data.address;
-            let extraAddress = '';
-            if (data.addressType === 'R') {
-                if (data.bname !== '') {
-                    extraAddress += data.bname;
-                }
-                if (data.buildingName !== '') {
-                    extraAddress += (extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName);
-                }
-                fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
-            }
-            setAddressAdd(fullAddress)
-        }
-    
+const DaumPost = ({ inputs }) => {
+  const [adressAdd, setAddressAdd] = useState();
+  const handleComplete = (data) => {
+    let fullAddress = data.address;
+    let extraAddress = "";
+    if (data.addressType === "R") {
+      if (data.bname !== "") {
+        extraAddress += data.bname;
+      }
+      if (data.buildingName !== "") {
+        extraAddress +=
+          extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
+      }
+      fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
+    }
+    setAddressAdd(fullAddress);
+  };
 
-        return (<DaumPostCode onComplete={handleComplete} className="post-code" />);
-}
+  return <DaumPostCode onComplete={handleComplete} className="post-code" />;
+};
 
 export default DaumPost;

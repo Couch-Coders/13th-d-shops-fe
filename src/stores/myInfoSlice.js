@@ -1,43 +1,64 @@
-import { async } from '@firebase/util'
-import { createSlice,  createAsyncThunk } from '@reduxjs/toolkit'
-import ErrorService from '../service/errorService'
-import { onGetMyInfo } from '../service/authservice'
+import axios from 'axios'
 
-const initialState={
-  myInfo : null,
-  loading: false,
-  error: '',
+
+const signIn = async ({token}) => {
+  const response = await axios.post('/auth',{}, {
+    headers: { Authorization: `${token}` },
+    withCredentials: true,
+
+    
+  })
+
+ return response.data
+ 
+}
+export const onGetMyInfo = async () => {
+  const response1 = await axios.get("/users/me")
+  return response1.data
+ };
+
+
+ export const onUserPut1 = async (user) => {
+  const responsePut1 = await axios.put(
+    "/users/me",
+    {
+      "name": user.name,
+    "phone": user.phone,
+    "company": {
+        "name": user.company.name,
+        "email": user.company.email,
+        "phone": user.company.phone,
+        "address": {
+            "seq": 1,
+            "name": null,
+            "post_code": null,
+            "address":null,
+            "extra": null,
+            "detail": null,
+            "location_x": null,
+            "location_y": null
+        }
+    },
+    },
+    {
+      withCredentials: true,
+    }
+  );
+  console.log(responsePut1.data);
+
+  const response1 = await axios.get("/users/me");
+  console.log(response1.data);
+};
+
+const signOut = async () => {
+  const response = await axios.delete('/auth', {
+    withCredentials: true,
+  })
+  return response
+
 }
 
-export const getMyInfo = createAsyncThunk(
-  'myInfo/getMyInfo',
-  async (_,thunkApi)=>{ 
-    try{
-  return await onGetMyInfo()
-    } catch(error){
-      const message = ErrorService.axiosErrorHandler(error)
-      return thunkApi.rejectWithValue(message)
-    }
-  }
-)
+const AuthService = { signIn, signOut,onGetMyInfo }
 
-const myInfoSlice = createSlice({
-  name:'myInfo',
-  initialState,
-  extraReducers(builder) {
-    builder.addCase(getMyInfo.pending, (state, action) => {
-      state.loading = true
-    })
-    builder.addCase(
-      getMyInfo.fulfilled,
-      (state, action) => {
-        state.myInfo = action.payload
-        state.loading = false
-      }
-    )
-    builder.addCase(getMyInfo.rejected, (state, action) => {
-      state.loading = false
-      state.error = action.error.message ?? ''
-    })
-}})
-export default myInfoSlice.reducer
+export default AuthService
+

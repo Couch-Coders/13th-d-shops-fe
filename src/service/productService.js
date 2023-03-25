@@ -1,13 +1,12 @@
 import axios from "axios";
 
-
 export const onProductPut1 = async (inputs) => {
   const responsePut1 = await axios.post(
     "/products",
     {
-      name:inputs.name,
-      options:inputs.option,
-      description:inputs.description,
+      name: inputs.name,
+      options: inputs.option,
+      description: inputs.description,
       image: {
         name: "products-image-name",
         url: "products-image-url",
