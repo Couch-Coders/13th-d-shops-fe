@@ -1,25 +1,17 @@
 import axios from "axios";
 
 export const onProductPut1 = async (inputs) => {
-  const responsePut1 = await axios.post(
-    "/products",
-    {
-      name: inputs.name,
-      options: inputs.option,
-      description: inputs.description,
-      image: {
-        name: "products-image-name",
-        url: "products-image-url",
-      },
+  const responsePost = await axios.post("/users/me/products", {
+    title: inputs.title,
+    options: inputs.options,
+    description: inputs.description,
+    //이건 내정보에서 가져오기
+    location_x: 126.777966,
+    location_y: 37.366536,
+  });
+  console.log(responsePost.data);
 
-      user_seq: 1,
-    }
-    // {
-    //   withCredentials: true,
-    // }
-  );
-  console.log(responsePut1.data);
-
-  const response1 = await axios.get("/products");
-  console.log(response1.data);
+  //받아온 자료 확인하기
+  const responseGet = await axios.get("/products/" + responsePost.data.seq);
+  console.log(responseGet.data);
 };

@@ -15,15 +15,13 @@ export default function Edit() {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <div>
-          <img></img>
-        </div>
+        <div>{/* <img></img> */}</div>
         <div>
           <div>옵션</div>
           <input
             type="text"
-            name="option"
-            value={inputs.option ?? ""}
+            name="options"
+            value={inputs.options ?? ""}
             onChange={handleChange}
           ></input>
         </div>
@@ -31,8 +29,8 @@ export default function Edit() {
           <p>글제목</p>
           <input
             type="text"
-            name="name"
-            value={inputs.name ?? ""}
+            name="title"
+            value={inputs.title ?? ""}
             onChange={handleChange}
           ></input>
           <p> 내용</p>
