@@ -10,11 +10,10 @@ export default function Carousel() {
     { src: "/image/001.png" },
     { src: "/image/002.png" },
     { src: "/image/003.png" },
-    
   ];
   return (
     <>
-     <Swiper
+      <Swiper
         effect={"fade"}
         autoplay={{
           delay: 3000,
@@ -23,7 +22,7 @@ export default function Carousel() {
         pagination={{
           clickable: true,
         }}
-        modules={[Navigation, EffectFade, Pagination,Autoplay]}
+        modules={[Navigation, EffectFade, Pagination, Autoplay]}
         className="mySwiper"
         loop={true}
       >
@@ -31,12 +30,12 @@ export default function Carousel() {
           return (
             <SwiperSlide key={idx}>
               <div className="main_wrap">
-              <img className="main_img" src={item.src} />
+                <img className="main_img" src={item.src} />
               </div>
             </SwiperSlide>
           );
         })}
       </Swiper>
     </>
-  )
+  );
 }

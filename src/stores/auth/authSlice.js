@@ -1,85 +1,82 @@
-import { createSlice,  createAsyncThunk } from '@reduxjs/toolkit'
-import AuthService from '../../service/authservice'
-import ErrorService from '../../service/errorService'
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import AuthService from "../../service/authservice";
+import ErrorService from "../../service/errorService";
 
-const initialState=  {
+const initialState = {
   user: null,
   userPostion: null,
   loading: false,
-  error: '',
-}
+  error: "",
+};
 
 export const getUserThunk = createAsyncThunk(
-  'authSlice/getUser',
+  "authSlice/getUser",
   async (token, thunkApi) => {
     try {
-      const userData = await AuthService.signIn({ token })
-      const displayName = userData.email.split('@')[0]
+      const userData = await AuthService.signIn({ token });
+      const displayName = userData.email.split("@")[0];
       return {
         email: userData.email,
         token,
         displayName,
         imgUrl: userData.userImageUrl,
-      }
+      };
     } catch (error) {
-      const message = ErrorService.axiosErrorHandler(error)
-      return thunkApi.rejectWithValue(message)
+      const message = ErrorService.axiosErrorHandler(error);
+      return thunkApi.rejectWithValue(message);
     }
   }
-)
+);
 
 export const logOutUserThunk = createAsyncThunk(
-  'authSlice/logOutUser',
+  "authSlice/logOutUser",
   async (_, thunkApi) => {
     try {
-      await AuthService.signOut()
+      await AuthService.signOut();
     } catch (error) {
-      const message = ErrorService.axiosErrorHandler(error)
-      return thunkApi.rejectWithValue(message)
+      const message = ErrorService.axiosErrorHandler(error);
+      return thunkApi.rejectWithValue(message);
     }
   }
-)
+);
+
 const authSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   reducers: {
-    setUserPosition: (state,action) => {
-      state.userPostion = action.payload
+    setUserPosition: (state, action) => {
+      state.userPostion = action.payload;
     },
     resetPosition: (state) => {
-      state.userPostion = initialState.userPostion
+      state.userPostion = initialState.userPostion;
     },
   },
   extraReducers(builder) {
     builder.addCase(getUserThunk.pending, (state, action) => {
-      state.loading = true
-    })
-    builder.addCase(
-      getUserThunk.fulfilled,
-      (state, action) => {
-        state.user = action.payload
-        state.loading = false
-      }
-    )
+      state.loading = true;
+    });
+    builder.addCase(getUserThunk.fulfilled, (state, action) => {
+      state.user = action.payload;
+      state.loading = false;
+    });
     builder.addCase(getUserThunk.rejected, (state, action) => {
-      state.loading = false
-      state.error = action.error.message ?? ''
-    })
+      state.loading = false;
+      state.error = action.error.message ?? "";
+    });
     builder.addCase(logOutUserThunk.pending, (state) => {
-      state.loading = true
-    })
+      state.loading = true;
+    });
     builder.addCase(logOutUserThunk.fulfilled, (state) => {
-      state.user = null
-      state.loading = false
-    })
+      state.user = null;
+      state.loading = false;
+    });
     builder.addCase(logOutUserThunk.rejected, (state, action) => {
-      state.loading = false
-      state.error = action.error.message ?? ''
-    })
+      state.loading = false;
+      state.error = action.error.message ?? "";
+    });
   },
-})
-   
+});
 
-export const { setUserPosition, resetPosition } = authSlice.actions
+export const { setUserPosition, resetPosition } = authSlice.actions;
 
-export default authSlice.reducer
+export default authSlice.reducer;

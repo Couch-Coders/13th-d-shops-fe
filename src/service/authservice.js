@@ -1,35 +1,40 @@
-import axios from 'axios'
+import axios from "axios";
 
+const signIn = async ({ token }) => {
+  const response = await axios.post(
+    "/auth",
+    {},
+    {
+      headers: { Authorization: `${token}` },
+      withCredentials: true,
+    }
+  );
+  return response.data;
+};
 
-const signIn = async ({token}) => {
-  const response = await axios.post('/auth',{}, {
-    headers: { Authorization: `${token}` },
-    withCredentials: true,
-
-    
-  })
-
- return response.data
- 
-}
 export const onGetMyInfo = async () => {
-  const response1 = await axios.get("/users/me");
-   console.log(response1.data);
- };
+  const response = await axios.get("/users/me");
+  return response.data;
+};
 
-
- export const onUserPut1 = async () => {
+export const onUserPut1 = async () => {
   const responsePut1 = await axios.put(
     "/users/me",
     {
-      name: "name-1",
-      phone: "phone-1",
+      name: "",
+      phone: "",
       company: {
-        name: "company-name-1",
-        phone: "company-phone-1",
-        email: "company-email-1",
+        name: "",
+        email: "",
+        phone: "",
         address: {
-          name: "company-address-name-1",
+          name: null,
+          post_code: null,
+          address: null,
+          extra: null,
+          detail: null,
+          location_x: null,
+          location_y: null,
         },
       },
     },
@@ -44,15 +49,12 @@ export const onGetMyInfo = async () => {
 };
 
 const signOut = async () => {
-  const response = await axios.delete('/auth', {
+  const response = await axios.delete("/auth", {
     withCredentials: true,
-  })
-  return response
+  });
+  return response;
+};
 
-}
+const AuthService = { signIn, signOut };
 
-const AuthService = { signIn, signOut }
-
-export default AuthService
-
-
+export default AuthService;
