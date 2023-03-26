@@ -39,6 +39,7 @@ export const onProductPut = async (inputs) => {
   console.log(response.data);
 };
 
+// 20230326 jay 품목 삭제
 export const onProductDelete = async (inputs) => {
   const response = await axios.delete("/users/me/products/" + inputs.seq);
   console.log(response.data);
