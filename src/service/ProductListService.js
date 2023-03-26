@@ -2,13 +2,17 @@
 import axios from "axios";
 
 // 20230326 by jay 전체 상품 목록 가져오기
-export const onProductListServiceGet = async (inputs) => {
+const getProduct = async () => {
   const response = await axios.get("/products?page=0&size=5&order=seq desc");
-  inputs.data = response.data;
+  return response.data;
 };
 
 // 20230326 jay 품목 검색
-export const onProductListSearchGet = async (inputs) => {
-  const response = await axios.get("/products/search/" + inputs.k);
-  inputs.search = response.data;
+const getProductSearch = async (keyword) => {
+  const response = await axios.get("/products/search/" + keyword);
+  return response.data;
 };
+
+const ProductListService = { getProduct, getProductSearch };
+
+export default ProductListService;
