@@ -7,7 +7,8 @@ import {
 } from "../service/productService";
 import { useParams } from "react-router-dom";
 
-export default function Edit() {
+export default function Edit({ match }) {
+  console.log(match);
   let { params } = useParams();
   console.log(params);
   const [inputs, setInputs] = useState({});
