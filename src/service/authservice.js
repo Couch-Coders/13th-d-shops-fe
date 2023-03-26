@@ -17,27 +17,28 @@ export const onGetMyInfo = async () => {
   return response.data;
 };
 
-export const onUserPut1 = async () => {
+export const onUserPut1 = async (user) => {
   const responsePut1 = await axios.put(
     "/users/me",
     {
-      name: "",
-      phone: "",
-      company: {
-        name: "",
-        email: "",
-        phone: "",
-        address: {
-          name: null,
-          post_code: null,
-          address: null,
-          extra: null,
-          detail: null,
-          location_x: null,
-          location_y: null,
-        },
-      },
+      "name": user.name,
+    "phone": user.phone,
+    "company": {
+        "name": user.company.name,
+        "email": user.company.email,
+        "phone": user.company.phone,
+        "address": {
+            "name": user.company.address.name,
+            "post_code": null,
+            "address":null,
+            "extra": null,
+            "detail": null,
+            "location_x": user.company.address.location_x,
+            "location_y": user.company.address.location_y
+        }
     },
+    },
+
     {
       withCredentials: true,
     }
@@ -45,7 +46,7 @@ export const onUserPut1 = async () => {
   console.log(responsePut1.data);
 
   const response1 = await axios.get("/users/me");
-  console.log(response1.data);
+  return response1.data
 };
 
 const signOut = async () => {

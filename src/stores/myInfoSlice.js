@@ -9,7 +9,7 @@ const initialState = {
   error: "",
 };
 
-export const getMyInfo = createAsyncThunk(
+export const myInfoThunk = createAsyncThunk(
   "myInfo/getMyInfo",
   async (_, thunkApi) => {
     try {
@@ -25,14 +25,14 @@ const myInfoSlice = createSlice({
   name: "myInfo",
   initialState,
   extraReducers(builder) {
-    builder.addCase(getMyInfo.pending, (state, action) => {
+    builder.addCase(myInfoThunk.pending, (state, action) => {
       state.loading = true;
     });
-    builder.addCase(getMyInfo.fulfilled, (state, action) => {
+    builder.addCase(myInfoThunk.fulfilled, (state, action) => {
       state.myInfo = action.payload;
       state.loading = false;
     });
-    builder.addCase(getMyInfo.rejected, (state, action) => {
+    builder.addCase(myInfoThunk.rejected, (state, action) => {
       state.loading = false;
       state.error = action.error.message ?? "";
     });
