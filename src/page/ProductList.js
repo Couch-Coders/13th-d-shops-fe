@@ -1,48 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { onProductListServiceGet } from "../service/ProductListService";
 import { Card, List } from "antd";
 
-const data = [
-  {
-    title: "Title 1",
-  },
-  {
-    title: "Title 2",
-  },
-  {
-    title: "Title 3",
-  },
-  {
-    title: "Title 4",
-  },
-  {
-    title: "Title 5",
-  },
-  {
-    title: "Title 6",
-  },
-];
-
-export default function ProductList({ product }) {
-  // let { params } = useParams();
-  // console.log(params);
-  // const [inputs, setInputs] = useState({});
-  // const handleChange = (e) =>
-  //   const { name, value } = e.target;
-  //   setInputs((inputs) => ({ ...inputs, [name]: value }));
-  // };
+export default function ProductList() {
   const [inputs, setInputs] = useState({});
   useEffect(() => {
     onProductListServiceGet(inputs);
     console.log("inputs", inputs);
-    console.log("data", data);
 
-    console.log("product 값이 설정됨");
-    console.log(inputs);
+    // console.log("product 값이 설정됨");
+    // console.log(inputs);
     return () => {
-      console.log("product 가 바뀌기 전..");
-      console.log(inputs);
+      // console.log("product 가 바뀌기 전..");
+      // console.log(inputs);
     };
   }, [inputs]);
 
