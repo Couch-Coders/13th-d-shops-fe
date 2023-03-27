@@ -14,15 +14,16 @@ const signIn = async ({ token }) => {
 
 export const onGetMyInfo = async () => {
   const response = await axios.get("/users/me");
-  return response.data;
+  return response.data
+  
 };
 
 export const onUserPut1 = async (user) => {
   const responsePut1 = await axios.put(
     "/users/me",
     {
-      "name": user.name,
-    "phone": user.phone,
+      "name":user.name,
+    "phone": user.phone ,
     "company": {
         "name": user.company.name,
         "email": user.company.email,
@@ -44,9 +45,6 @@ export const onUserPut1 = async (user) => {
     }
   );
   console.log(responsePut1.data);
-
-  const response1 = await axios.get("/users/me");
-  return response1.data
 };
 
 const signOut = async () => {

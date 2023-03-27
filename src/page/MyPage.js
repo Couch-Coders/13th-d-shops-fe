@@ -4,10 +4,11 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import DaumPost from '../component/DaumPost'
 import { onUserPut1 } from '../service/authservice'
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 import DaumPostcode from 'react-daum-postcode';
 import axios from 'axios'
 import { myInfoThunk } from '../stores/myInfoSlice'
+
 
 export default function MyPage() {
 
@@ -58,14 +59,13 @@ export default function MyPage() {
   const dispatch = useDispatch()
   const [editedName, setEditedName] = useState({});
   const [user, setUser] = useState({
-    "name": "name-1",
-    "phone": "phone-1",
+    "name": null,
+    "phone": null,
     "company": {
-        "name": "company-name-1",
-        "email": "company-email-1",
-        "phone": "company-phone-1",
+        "name": null,
+        "email": null,
+        "phone": null,
         "address": {
-            "seq": 1,
             "name": null,
             "post_code": null,
             "address": null,
@@ -77,10 +77,17 @@ export default function MyPage() {
     },
     });
   let my= useSelector((state)=>state.myInfo.myInfo)
+  console.log(my)
   useEffect(()=>{
     dispatch(myInfoThunk())
   },[])
 
+
+  useEffect(()=>{
+ 
+
+  })
+ 
  
   
   const handleNameChange = async(event) => {
@@ -118,7 +125,7 @@ export default function MyPage() {
           name:editedName.companyName,
           email:editedName.companyEmail,
           phone:editedName.companyPhone,
-
+      
           address: {
               ...prevUser.company.address,
               name:address,
@@ -134,23 +141,45 @@ export default function MyPage() {
       console.log(user)
       
       };
+
+
+
   return (
     <>
-    <div>{my ? my.email : ''}</div>
-    <div>이름 : {my ? my.name : '' }</div>
-    <div>전화번호 : {my ? my.phone : ''}</div>
-    <div>사업자명 : {my ? my.company.name : ''}</div>
-    <div>사업자주소 : {my ? my.company.address.name : ''}</div>
-    <div>사업자 이메일 : {my ? my.company.email : ''}</div>
-    <div>사업자 번호 : {my ? my.company.phone : ''}</div>
-  
+    
+   
+    
     <form onSubmit={handleNameSubmit}>
-      <input name='name' onChange={handleNameChange} required ></input>
-      <input name='phone' onChange={handleNameChange} required></input>
-      <input name='companyName' onChange={handleNameChange} required></input>
-      <input name='companyAdress' value={address} onChange={handleAddressChange}required/>
-      <input name='companyEmail' onChange={handleNameChange} required></input>
-      <input name='companyPhone' onChange={handleNameChange} required></input>
+     
+    <div>{my && my.email}</div>
+    <div>
+    <div>이름 : {my ? my.name : '' }</div>
+    <input name='name' onChange={handleNameChange}></input>
+    </div>
+    <div>
+    <div>전화번호 : {my ? my.phone : ''}</div>
+    <input name='phone' onChange={handleNameChange} ></input>
+    </div>
+    <div>
+    <div>사업자명 : {my ? my.company?.name : ''}</div>
+    <input name='companyName' onChange={handleNameChange} ></input>
+    </div>
+    <div>
+    <div>사업자주소 : {my ? my.company?.address.name : ''}</div>
+    <input name='companyAdress' value={address ?? ''} onChange={handleAddressChange} ></input>
+    </div>
+    <div>
+    <div>사업자 이메일 : {my ? my.company?.email : ''}</div>
+    <input name='companyEmail' onChange={handleNameChange} ></input>
+    </div>
+    <div>
+    <div>사업자 번호 : {my ? my.company?.phone : ''}</div>
+    <input name='companyPhone' onChange={handleNameChange} ></input>
+    </div>
+     
+      
+    
+      
 
       <button>수정</button>
       {/* 우편번호 */}
@@ -171,12 +200,8 @@ export default function MyPage() {
    <div>
         
 
-        <button onClick={handleConvertAddress}>Convert Address</button>
-        {coordinates.latitude && coordinates.longitude && (
-          <p>
-            Latitude: {coordinates.latitude}, Longitude: {coordinates.longitude}
-          </p>
-        )}
+       
+ 
       </div>
 
     </>
