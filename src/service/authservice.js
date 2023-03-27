@@ -29,24 +29,23 @@ export const onUserPut1 = async (user) => {
         "email": user.company.email,
         "phone": user.company.phone,
         "address": {
-            "name": user.company.address.name,
-            "post_code": null,
-            "address":null,
-            "extra": null,
-            "detail": null,
-            "location_x": user.company.address.location_x,
-            "location_y": user.company.address.location_y
+            "name":null ,
+            "post_code":user.company.address.postCode,
+            "address":user.company.address.name,
+            "extra":user.company.address.extra,
+            "detail":user.company.address.detail,
+            "location_x":user.company.address.location_x,
+            "location_y":user.company.address.location_y
         }
     },
     },
 
     {
       withCredentials: true,
-    }
+    },
+   
   );
- console.log(responsePut1.data) 
-
-
+  return responsePut1.data
 };
 
 const signOut = async () => {
@@ -56,6 +55,6 @@ const signOut = async () => {
   return response;
 };
 
-const AuthService = { signIn, signOut };
+const AuthService = { signIn, signOut ,onGetMyInfo ,onUserPut1 };
 
 export default AuthService;
