@@ -3,7 +3,7 @@ import axios from "axios";
 
 // 20230326 by jay 전체 상품 목록 가져오기
 const getProduct = async () => {
-  const response = await axios.get("/products?page=0&size=5&order=seq desc");
+  const response = await axios.get("/products?page=0&size=100&order=seq desc");
   return response.data;
 };
 
