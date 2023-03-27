@@ -1,121 +1,122 @@
-import React, { useState } from "react";
-import {
-  onProductPost,
-  onProductGet,
-  onProductPut,
-  onProductDelete,
-} from "../service/productService";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import ProductService from "../service/productService";
 
-export default function Edit({ match }) {
-  console.log(match);
-  let { params } = useParams();
-  console.log(params);
+const Edit = () => {
+  const { id } = useParams();
+  console.log("id", id);
+  const [product, setProduct] = useState({});
+
   const [inputs, setInputs] = useState({});
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setInputs((inputs) => ({ ...inputs, [name]: value }));
+    // setInputs((inputs) => ({ ...inputs, [name]: value }));
+    setProduct((product) => ({ ...product, [name]: value }));
   };
-  const handleSubmitPost = (e) => {
+  const handleSubmitPost = async (e) => {
     e.preventDefault();
-    onProductPost(inputs);
+
+    const result = await ProductService.postProduct(product);
+    console.log("result", result);
+    setProduct({});
   };
-  const handleSubmitPut = (e) => {
+  const handleSubmitPut = async (e) => {
     e.preventDefault();
-    onProductPut(inputs);
+
+    const result = await ProductService.putProduct(product);
+    console.log("result", result);
   };
 
-  const handleSubmitDelete = (e) => {
+  const handleSubmitDelete = async (e) => {
     e.preventDefault();
-    onProductDelete(inputs);
+    console.log("product.seq", product.seq);
+    const result = await ProductService.deleteProduct(product.seq);
+    console.log("result", result);
+    setProduct({});
   };
 
-  const handleSubmitButton = (e) => {
+  const handleSubmitButton = async (e) => {
     e.preventDefault();
-    onProductGet(inputs);
+
+    const result = await ProductService.getProduct(product.seq);
+    console.log("result", result);
+    setProduct(result);
   };
+
+  useEffect(() => {
+    // // 20230327 jay 로딩시 데이터 늦게 받아오는 문제 해결
+    const fetchData = async () => {
+      if (!id) {
+        console.log("id 없음");
+        return;
+      }
+
+      const result = await ProductService.getProduct(id);
+      console.log("result", result);
+      setProduct(result);
+      // console.log("product.title", product.title);
+    };
+    // call the function
+    fetchData()
+      // make sure to catch any error
+      .catch(console.error);
+    // console.log("값이 설정됨");
+    return () => {
+      //   console.log("가 바뀌기 전..");
+    };
+  }, []);
 
   return (
     <div>
+      <p>현재 페이지의 파라미터는 {id} 입니다.</p>
+
       <div>
-        <form onSubmit={handleSubmitPost}>
-          <div>
-            <div>{/* <img></img> */}</div>
-            <div>
-              <div>옵션</div>
-              <input
-                type="text"
-                name="options"
-                value={inputs.options ?? ""}
-                onChange={handleChange}
-              ></input>
-            </div>
-            <div>
-              <p>글제목</p>
-              <input
-                type="text"
-                name="title"
-                value={inputs.title ?? ""}
-                onChange={handleChange}
-              ></input>
-              <p> 내용</p>
-              <input
-                type="text"
-                name="description"
-                value={inputs.description ?? ""}
-                onChange={handleChange}
-              ></input>
-            </div>
-          </div>
-          <button>등록</button>
-        </form>
-      </div>
-      <div>
-        <div>seq</div>
+        <div>product</div>
         <input
           type="text"
           name="seq"
-          value={inputs.seq ?? ""}
+          value={product.seq ?? ""}
           onChange={handleChange}
         ></input>
-        <button onClick={handleSubmitButton}>
-          불러오기후 화면뿌리기 해주세요
-        </button>
-        <button onClick={handleSubmitDelete}>삭제</button>
-      </div>
-      <div>
-        <form onSubmit={handleSubmitPut}>
-          <div>
-            <div>{/* <img></img> */}</div>
+        <button onClick={handleSubmitButton}>불러오기</button>
+        <div>
+          <form onSubmit={handleSubmitPut}>
             <div>
-              <div>옵션</div>
-              <input
-                type="text"
-                name="options"
-                value={inputs.options ?? ""}
-                onChange={handleChange}
-              ></input>
+              <div>{/* <img></img> */}</div>
+              <div>
+                <div>옵션</div>
+                <input
+                  type="text"
+                  name="options"
+                  value={product.options ?? ""}
+                  onChange={handleChange}
+                ></input>
+              </div>
+              <div>
+                <p>글제목</p>
+                <input
+                  type="text"
+                  name="title"
+                  value={product.title ?? ""}
+                  onChange={handleChange}
+                ></input>
+                <p> 내용</p>
+                <input
+                  type="text"
+                  name="description"
+                  value={product.description ?? ""}
+                  onChange={handleChange}
+                ></input>
+              </div>
             </div>
-            <div>
-              <p>글제목</p>
-              <input
-                type="text"
-                name="title"
-                value={inputs.title ?? ""}
-                onChange={handleChange}
-              ></input>
-              <p> 내용</p>
-              <input
-                type="text"
-                name="description"
-                value={inputs.description ?? ""}
-                onChange={handleChange}
-              ></input>
-            </div>
-          </div>
-          <button>수정</button>
-        </form>
+            <button onClick={handleSubmitPost}>등록</button>
+            <button onClick={handleSubmitPut}>수정</button>
+            <button onClick={handleSubmitDelete}>삭제</button>
+          </form>
+        </div>
       </div>
     </div>
   );
-}
+};
+
+export default Edit;

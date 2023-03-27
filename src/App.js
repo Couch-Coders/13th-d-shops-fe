@@ -43,6 +43,7 @@ function App() {
           <Route path="/products/:id" element={<Product_Detail />}></Route>
           <Route path="/mypage" element={<MyPage />}></Route>
           <Route path="/edit" element={<Edit />}></Route>
+          <Route path="/edit/:id" element={<Edit />}></Route>
           <Route path="/mylist" element={<MyPage_List />}></Route>
         </Routes>
       </QueryClientProvider>
