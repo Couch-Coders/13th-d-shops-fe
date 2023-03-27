@@ -15,8 +15,9 @@ import ProductList from "./page/ProductList";
 import MyPage_List from "./page/MyPage_List";
 import Product_Detail from "./page/Product_Detail";
 import MyPage from "./page/MyPage";
-import Edit from "./page/Edit";
+
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Product from "./page/Product";
 function App() {
   const queryClient = new QueryClient();
 
@@ -42,8 +43,8 @@ function App() {
           <Route path="/products" element={<ProductList />}></Route>
           <Route path="/products/:id" element={<Product_Detail />}></Route>
           <Route path="/mypage" element={<MyPage />}></Route>
-          <Route path="/edit" element={<Edit />}></Route>
-          <Route path="/edit/:id" element={<Edit />}></Route>
+          <Route path="/product" element={<Product/>}></Route>
+          <Route path="/product/:id" element={<Product/>}></Route>
           <Route path="/mylist" element={<MyPage_List />}></Route>
         </Routes>
       </QueryClientProvider>

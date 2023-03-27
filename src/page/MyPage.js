@@ -81,15 +81,8 @@ export default function MyPage() {
   useEffect(()=>{
     dispatch(myInfoThunk())
   },[])
-
-
-  useEffect(()=>{
  
 
-  })
- 
- 
-  
   const handleNameChange = async(event) => {
 
     const {name , value}= event.target;
@@ -108,6 +101,7 @@ export default function MyPage() {
 
       const { x: longitude, y: latitude } = response.data.documents[0].address;
 
+      console.log(response.data.documents[0])
       setCoordinates({ latitude, longitude });
     } catch (error) {
       console.error(error);
@@ -116,18 +110,17 @@ export default function MyPage() {
     const handleNameSubmit = (event) => {
       event.preventDefault();
       
-      setUser((prevUser) => ({
-          ...prevUser,
+      setUser(() => ({
           name:editedName.name,
           phone:editedName.phone,
           company: {
-          ...prevUser.company,
+  
           name:editedName.companyName,
           email:editedName.companyEmail,
           phone:editedName.companyPhone,
       
           address: {
-              ...prevUser.company.address,
+          
               name:address,
               location_x:coordinates.longitude,
               location_y:coordinates.latitude
@@ -136,10 +129,10 @@ export default function MyPage() {
           },
          
       }));
-      
-      onUserPut1(user)
       console.log(user)
-      
+      onUserPut1(user)
+     
+   
       };
 
 
@@ -166,7 +159,7 @@ export default function MyPage() {
     </div>
     <div>
     <div>사업자주소 : {my ? my.company?.address.name : ''}</div>
-    <input name='companyAdress' value={address ?? ''} onChange={handleAddressChange} ></input>
+    <input name='companyAdress' value={address} onChange={handleAddressChange} ></input>
     </div>
     <div>
     <div>사업자 이메일 : {my ? my.company?.email : ''}</div>
