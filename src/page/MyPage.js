@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import DaumPost from '../component/DaumPost'
-import { onUserPut1 } from '../service/authservice'
+import AuthService, { onUserPut1 } from '../service/authservice'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import DaumPostcode from 'react-daum-postcode';
 import axios from 'axios'
@@ -81,7 +81,9 @@ export default function MyPage() {
   useEffect(()=>{
     dispatch(myInfoThunk())
   },[])
+  
  
+
 
   const handleNameChange = async(event) => {
 
@@ -132,9 +134,9 @@ export default function MyPage() {
       console.log(user)
       onUserPut1(user)
      
-   
+      
       };
-
+     
 
 
   return (
@@ -174,7 +176,7 @@ export default function MyPage() {
     
       
 
-      <button>수정</button>
+      <button >수정</button>
       {/* 우편번호 */}
       <div>
             

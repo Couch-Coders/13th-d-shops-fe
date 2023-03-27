@@ -44,7 +44,9 @@ export const onUserPut1 = async (user) => {
       withCredentials: true,
     }
   );
-  console.log(responsePut1.data);
+ console.log(responsePut1.data) 
+
+
 };
 
 const signOut = async () => {
