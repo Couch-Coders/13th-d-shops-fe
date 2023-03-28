@@ -5,13 +5,16 @@ import MypageProductService from '../service/MypageProductService';
 
 export default function ProductCard({item}) {
 
-  const handleDelete = async (item)=>{
-    const result = await MypageProductService.deleteProduct(item.seq)
+  const handleDelete = async (seq)=>{
+    const result = await MypageProductService.deleteProduct(seq)
     console.log(result)
-  
+    console.log(item)
   }
 
+  const handleText =(item)=>{
+    console.log(item)
 
+  }
   return (
     <div>
       <Row>
@@ -27,7 +30,8 @@ export default function ProductCard({item}) {
         <div>{item.options}</div>
         <div>{item.seq}</div>
         <button>수정하기</button>
-        <button onClick={handleDelete}>삭제하기</button>
+        <button onClick={()=>handleDelete(item.seq)}>삭제하기</button>
+        <button onClick={()=>handleText(item.seq)}>테스트</button>
         </div>
         </div>
         </Col>

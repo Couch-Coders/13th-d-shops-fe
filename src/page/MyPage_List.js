@@ -5,13 +5,13 @@ import ProductListService from '../service/ProductListService';
 
 export default function MyPage_List() {
   const [inputs, setInputs] = useState({});
-  const [product, setProduct] = useState([]);
+  const [products, setProducts] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       const result = await MypageProductService.getMyProduct();
       // console.log("result", result);
-      setProduct(result.content);
-      console.log(product)
+      setProducts(result.content);
+     
     };
 
     // call the function
@@ -30,20 +30,22 @@ export default function MyPage_List() {
     const result = await MypageProductService.getMyProduct();
     // console.log("result", result.content);
 
-    setProduct(result);
-    console.log(product[0].seq)
+    setProducts(result);
+
     console.log(result)
 
   };
 
-
+ const handleText = ()=>{
+  console.log()
+ }
   return (
     <div>
       <button onClick={handleOnLoadProduct }></button>
-     {product && product.map((item)=>{
-      return <ProductCard item={item} product={product}/>
+     {products && products.map((item)=>{
+      return <ProductCard item={item} />
      })}
-   
+    <button onClick={handleText}>테스트</button>
     </div>
   )
 }
