@@ -11,7 +11,7 @@ export default function MyPage_List() {
       const result = await MypageProductService.getMyProduct();
       // console.log("result", result);
       setProduct(result.content);
-      console.log(result)
+      console.log(product)
     };
 
     // call the function
@@ -30,14 +30,20 @@ export default function MyPage_List() {
     const result = await MypageProductService.getMyProduct();
     // console.log("result", result.content);
 
-    setProduct(result.content);
+    setProduct(result);
+    console.log(product[0].seq)
     console.log(result)
+
   };
+
+
   return (
     <div>
-      
-      <div>{product.map((item)=>(
-     <ProductCard item={item} /> ))}</div>
+      <button onClick={handleOnLoadProduct }></button>
+     {product && product.map((item)=>{
+      return <ProductCard item={item} product={product}/>
+     })}
+   
     </div>
   )
 }

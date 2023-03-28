@@ -4,5 +4,13 @@ const getMyProduct = async () =>{
   const response= await axios.get("/users/me/products");
   return response.data;
 }
-const MypageProductService = {getMyProduct}
+
+
+const deleteProduct = async (seq) => {
+  const response = await axios.delete("/users/me/products/" + seq);
+  console.log(response.data);
+  return response.data;
+};
+
+const MypageProductService = {getMyProduct ,deleteProduct}
 export default MypageProductService;

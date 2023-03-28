@@ -1,9 +1,17 @@
 
 import { Row,Col } from 'antd'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import MypageProductService from '../service/MypageProductService';
 
 export default function ProductCard({item}) {
-  console.log(item)
+
+  const handleDelete = async (item)=>{
+    const result = await MypageProductService.deleteProduct(item.seq)
+    console.log(result)
+  
+  }
+
+
   return (
     <div>
       <Row>
@@ -17,8 +25,9 @@ export default function ProductCard({item}) {
         <div>{item.title}</div> 
         <div>{item.description}</div>
         <div>{item.options}</div>
+        <div>{item.seq}</div>
         <button>수정하기</button>
-        <button>삭제하기</button>
+        <button onClick={handleDelete}>삭제하기</button>
         </div>
         </div>
         </Col>

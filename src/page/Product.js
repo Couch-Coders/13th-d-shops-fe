@@ -15,7 +15,7 @@ const Product = () => {
   };
   const handleSubmitPost = async (e) => {
     e.preventDefault();
-
+    console.log(product.seq)
     const result = await ProductService.postProduct(product);
     console.log("result", result);
     setProduct({});
