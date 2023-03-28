@@ -93,6 +93,9 @@
   -o-object-fit: cover;
   object-fit: cover;
 }
+.mainitembox{
+  width: 200px;
+}
 
 /* 마이페이지 */
 
@@ -106,6 +109,11 @@
   width: 100%;
   border: 1px solid red;
 }
+.mapage_address_wrap{
+  display: flex;
+  height: 40px;
+  align-items: center;
+}
 
 .mypage_input{
   margin-left:20px;
@@ -114,8 +122,10 @@
   border-radius: 10px;
   text-align: center;
   color:navy;
+  height: 30px;
 }
 .mypage_address_input{
+  height: 30px;
   border:none;
   border-radius: 10px;
   text-align: center;
@@ -174,3 +184,12 @@
   font-size: 1.4rem;
   
 }
+
+
+/* 마이리스트 */
+
+.myproductlist{
+ float: left;
+}
+
+

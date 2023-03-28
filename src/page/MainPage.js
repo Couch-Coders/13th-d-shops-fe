@@ -96,20 +96,20 @@ export default function MainPage() {
           <div id="map" style={{ width: "500px", height: "400px" }}></div>
         </div>
       )}
-      <List
+      <List 
         grid={{
           gutter: 16,
           xs: 1,
           sm: 2,
           md: 4,
-          lg: 4,
+          lg: 5,
           xl: 6,
           xxl: 3,
         }}
         dataSource={productNear}
         renderItem={(item) => (
-          <List.Item>
-            <Card title={item.title}>{item.description}</Card>
+          <List.Item >
+            <Card  title={item.title}>{item.description}</Card>
           </List.Item>
         )}
       />

@@ -38,6 +38,7 @@ export default function ProductList(props) {
       const result = await ProductListService.getProduct();
       // console.log("result", result);
       setProduct(result.content);
+     
     };
 
     // call the function

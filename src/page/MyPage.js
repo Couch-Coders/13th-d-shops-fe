@@ -24,8 +24,8 @@ let navigate = useNavigate()
 const handleAddressChange = (event) => {
   setAddress(event.target.value);
 };
-const handleConvertAddress = async () => {
-
+const handleConvertAddress = async (event) => {
+  event.preventDefault();
 };
 
 // 우편번호
@@ -228,11 +228,12 @@ return (
           <div>
             <label> {user.company.address.name} , {user.company.address.detail}</label>
             
-            <div>
+            <div className='mapage_address_wrap'>
+            <label>주소 : </label>
             <input  value={address} className='mypage_address_input' onChange={handleAddressChange} ></input>
             <label>상세주소 : </label>
             <input name='companyAdressDetail'className='mypage_input' onChange={handleNameChange}></input>
-            <button onClick={handle.clickButton} className='MyPage_Location_btn'><HiLocationMarker/></button>
+            <p onClick={handle.clickButton} className='MyPage_Location_btn'><HiLocationMarker/></p>
             <div>
         
           
