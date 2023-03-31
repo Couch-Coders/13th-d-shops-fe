@@ -1,51 +1,57 @@
+
+import { Row,Col } from 'antd'
 import React, { useEffect, useState } from 'react'
-import ProductCard from '../component/ProductCard';
+import { Link, useNavigate } from 'react-router-dom';
 import MypageProductService from '../service/MypageProductService';
-import ProductListService from '../service/ProductListService';
 
-export default function MyPage_List() {
-  const [inputs, setInputs] = useState({});
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await MypageProductService.getMyProduct();
-      // console.log("result", result);
-      setProducts(result.content);
-     
-    };
+export default function MyPage_List({item}) {
+  const [product,setProduct] =useState()
+  const navigate =useNavigate()
+  const handleDelete = async (seq)=>{
+    const result = await MypageProductService.deleteProduct(seq)
+    console.log(result)
 
-    // call the function
+  }
+
+  useEffect(()=>{
+    const fetchData = async ()=>{
+      const result = await MypageProductService.getMyProduct()
+      setProduct(result.content)
+    }
     fetchData()
       // make sure to catch any error
       .catch(console.error);
+  },[handleDelete])
 
-    console.log("값이 설정됨");
-    return () => {
-      console.log("가 바뀌기 전..");
-    };
-  }, []);
-  const handleOnLoadProduct = async (e) => {
-    e.preventDefault();
-
-    const result = await MypageProductService.getMyProduct();
-    // console.log("result", result.content);
-
-    setProducts(result);
-
-    console.log(result)
-
-  };
-
- const handleText = ()=>{
-  console.log()
- }
   return (
+ 
     <div>
-      <button onClick={handleOnLoadProduct }></button>
-     {products && products.map((item)=>{
-      return <ProductCard item={item} />
-     })}
-    <button onClick={handleText}>테스트</button>
+      {product && product.map((item)=>{
+        return(
+          <Row>
+        <Col lg={2}></Col>
+        <Col lg={10}>
+        <div>
+        <div className='myproductlist'>
+        <img width={200} src='https://m.comfpro.co.kr/web/product/medium/202111/ab99bbc3f5c49160158c29d07ce660bf.jpg'></img>
+        </div>
+        <div>
+        <div>{item?.title}</div> 
+        <div>{item?.description}</div>
+        <div>{item?.options}</div>
+        <div>{item?.seq}</div>
+        <Link to={`/product/${item?.seq}`}>수정하기</Link>
+        <button onClick={()=>handleDelete(item?.seq)}>삭제하기</button>
+      
+        </div>
+        </div>
+        </Col>
+      </Row>
+        )
+      })}
+
+      
+     
     </div>
   )
 }
