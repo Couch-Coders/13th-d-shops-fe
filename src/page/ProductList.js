@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import ProductListService from "../service/ProductListService";
 import { Card, List } from "antd";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 
 export default function ProductList(props) {
   const [query,setQuery] = useSearchParams()
   const [product, setProduct] = useState([]);
   const [productSearch, setProductSearch] = useState([]);
-
+  const navigate  = useNavigate()
  
  
   const handleOnLoadProduct = async (e) => {
@@ -71,8 +71,8 @@ export default function ProductList(props) {
         // dataSource={inputs.data?.content}
         dataSource={product}
         renderItem={(item) => (
-          <List.Item>
-            <Card title={item.title}>{item.description}</Card>
+          <List.Item onClick={()=>{navigate(`/products/${item.seq}` )}}>
+            <Card  title={item.title}>{item.description}</Card>
           </List.Item>
         )}
       />
