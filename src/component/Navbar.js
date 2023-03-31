@@ -6,14 +6,9 @@ import signIn, { onGetMyInfo, onUserPut1 } from "../service/authservice";
 import { googleSignIn, googleSignOut } from "../service/firebaseAuth";
 import User from "./User";
 
-export default function Login() {
+export default function Navbar() {
   const user = useSelector((state) => state.user.user);
-  const handleLogin = () => {
-    googleSignIn();
-  };
-  const handleLogout = () => {
-    googleSignOut();
-  };
+ 
   return (
     <div className="header_right">
       <Link to="/products" className="product_list_text">

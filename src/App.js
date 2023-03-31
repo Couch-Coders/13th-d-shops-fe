@@ -1,15 +1,11 @@
 import "./App.css";
-
 import React, { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
-import Login from "./component/Login";
 import { getUserThunk } from "./stores/auth/authSlice";
 import { auth } from "./service/firebaseAuth";
-import DaumPost from "./component/DaumPost";
 import Header from "./component/Header";
 import { Routes, Route } from "react-router-dom";
-
 import MainPage from "./page/MainPage";
 import ProductList from "./page/ProductList";
 import MyPage_List from "./page/MyPage_List";

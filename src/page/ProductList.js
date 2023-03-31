@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
 import ProductListService from "../service/ProductListService";
 import { Card, List } from "antd";
+import { useParams, useSearchParams } from "react-router-dom";
 
 export default function ProductList(props) {
-  const [inputs, setInputs] = useState({});
+  const [query,setQuery] = useSearchParams()
   const [product, setProduct] = useState([]);
   const [productSearch, setProductSearch] = useState([]);
 
-  // 입력이 바뀌면
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setInputs((inputs) => ({ ...inputs, [name]: value }));
-  };
-
+ 
+ 
   const handleOnLoadProduct = async (e) => {
     e.preventDefault();
 
@@ -23,20 +20,25 @@ export default function ProductList(props) {
   };
 
   const handleOnLoadProductSearch = async (e) => {
-    e.preventDefault();
+  
+    let searchQuery = query.get('q')
+    const result = await ProductListService.getProductSearch(searchQuery);
+    console.log("result", result.content);
 
-    const result = await ProductListService.getProductSearch(inputs.keyword);
-    // console.log("result", result.content);
-
-    setProductSearch(result.content);
+    setProduct(result.content);
   };
+
+  useEffect(()=>{
+    handleOnLoadProductSearch()
+  },[query])
 
   useEffect(() => {
     // 20230327 jay 로딩시 데이터 늦게 받아오는 문제 해결
-    inputs.keyword = "치즈"; // 임시데이터
+  
     const fetchData = async () => {
       const result = await ProductListService.getProduct();
       // console.log("result", result);
+      console.log(result.content)
       setProduct(result.content);
      
     };
@@ -55,7 +57,7 @@ export default function ProductList(props) {
   return (
     <div>
       <div>ProductList</div>
-      <button onClick={handleOnLoadProduct}>품목 불러오기</button>
+      <button onClick={handleOnLoadProduct}>전체상품보기</button>
       <List
         grid={{
           gutter: 16,
@@ -74,36 +76,10 @@ export default function ProductList(props) {
           </List.Item>
         )}
       />
-      <div>ProductSearch</div>
+   
+    
 
-      <div>검색어</div>
-      <input
-        type="text"
-        name="keyword"
-        value={inputs.keyword ?? ""}
-        onChange={handleChange}
-      ></input>
-
-      <button onClick={handleOnLoadProductSearch}>검색 품목 불러오기</button>
-
-      <List
-        grid={{
-          gutter: 16,
-          xs: 1,
-          sm: 2,
-          md: 4,
-          lg: 4,
-          xl: 6,
-          xxl: 3,
-        }}
-        // dataSource={inputs.search?.content}
-        dataSource={productSearch}
-        renderItem={(item) => (
-          <List.Item>
-            <Card title={item.title}>{item.description}</Card>
-          </List.Item>
-        )}
-      />
+    
     </div>
   );
 }

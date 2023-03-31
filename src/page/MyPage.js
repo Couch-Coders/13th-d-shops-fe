@@ -2,7 +2,6 @@ import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import DaumPost from '../component/DaumPost'
 import AuthService, { onUserPut1 } from '../service/authservice'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import DaumPostcode from 'react-daum-postcode';
