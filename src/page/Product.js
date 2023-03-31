@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import ProductService from "../service/productService";
+import { myInfoThunk } from "../stores/myInfoSlice";
 
 const Product = () => {
   const { id } = useParams();
   console.log("id", id);
   const [product, setProduct] = useState({});
-
   const [inputs, setInputs] = useState({});
+
+  const dispatch = useDispatch()
+  const my = useSelector((state)=>state.myInfo.myInfo)
+  useEffect(()=>{
+    dispatch(myInfoThunk())
+  },[])
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     // setInputs((inputs) => ({ ...inputs, [name]: value }));
@@ -15,8 +23,8 @@ const Product = () => {
   };
   const handleSubmitPost = async (e) => {
     e.preventDefault();
-    console.log(product.seq)
-    const result = await ProductService.postProduct(product);
+
+    const result = await ProductService.postProduct(product,my);
     console.log("result", result);
     setProduct({});
   };

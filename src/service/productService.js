@@ -1,13 +1,19 @@
 import axios from "axios";
 // 20230326 jay 품목 등록
-const postProduct = async (product) => {
+const postProduct = async (product,my) => {
+  console.log(my)
   const responsePost = await axios.post("/users/me/products", {
     title: product.title,
     options: product.options,
     description: product.description,
+    location_x:my.company.address.location_x,
+    location_y:my.company.address.location_y,
+    name:my.company.name,
+ 
+
     //이건 내정보에서 가져오기
-    location_x: 126.777966,
-    location_y: 37.366536,
+   
+    
   });
   return responsePost.data;
   // console.log(responsePost.data);
