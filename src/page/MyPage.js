@@ -7,10 +7,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import DaumPostcode from 'react-daum-postcode';
 import axios from 'axios'
 import { myInfoThunk, myInfoUpdateThunk } from '../stores/myInfoSlice'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Table from 'react-bootstrap/Table';
 import { HiLocationMarker } from 'react-icons/hi';
 import {Container ,Row,Col} from 'react-bootstrap';
+import MyPageNavigate from '../component/MyPageNavigate';
 
 export default function MyPage() {
 
@@ -96,16 +97,7 @@ return (
   
   <Row>
     <Col lg={3}>
-      <div className='padding'>
-      <div className='mypage_navigate_header'>
-        <h1 className='mypage_navigate_header_name'>MY PAGE</h1>
-      </div>
-      <h2>MY</h2>
-      <div className='mypage_navigate'>
-        <p>내정보</p>
-        <button onClick={()=>{navigate('/mylist')}}>내 상품 리스트</button>
-      </div>
-      </div>
+      <MyPageNavigate/>
     </Col>
     <Col lg={9}>
     
