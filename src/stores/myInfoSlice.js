@@ -1,7 +1,7 @@
 import { async } from "@firebase/util";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import ErrorService from "../service/errorService";
-import { onGetMyInfo } from "../service/authservice";
+import { onGetMyInfo, onUserPut1 } from "../service/authservice";
 
 const initialState = {
   myInfo: null,
@@ -21,6 +21,18 @@ export const myInfoThunk = createAsyncThunk(
   }
 );
 
+export const myInfoUpdateThunk = createAsyncThunk(
+  "myInfo/UpdateMyInfo",
+  async(updateinfo,thunkApi)=>{
+    try {
+      return await onUserPut1(updateinfo);  
+    } catch (error) {
+      const message = ErrorService.axiosErrorHandler(error);
+      return thunkApi.rejectWithValue(message);
+    }
+  }
+)
+
 const myInfoSlice = createSlice({
   name: "myInfo",
   initialState,
@@ -33,6 +45,17 @@ const myInfoSlice = createSlice({
       state.loading = false;
     });
     builder.addCase(myInfoThunk.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.error.message ?? "";
+    });
+    builder.addCase(myInfoUpdateThunk.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(myInfoUpdateThunk.fulfilled, (state, action) => {
+      state.myInfo = action.payload;
+      state.loading = false;
+    });
+    builder.addCase(myInfoUpdateThunk.rejected, (state, action) => {
       state.loading = false;
       state.error = action.error.message ?? "";
     });

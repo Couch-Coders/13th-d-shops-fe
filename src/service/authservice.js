@@ -18,24 +18,24 @@ export const onGetMyInfo = async () => {
   
 };
 
-export const onUserPut1 = async (user) => {
+export const onUserPut1 = async (editedName) => {
   const responsePut1 = await axios.put(
     "/users/me",
     {
-      "name":user.name,
-    "phone": user.phone ,
+      "name":editedName.name,
+    "phone": editedName.phone ,
     "company": {
-        "name": user.company.name,
-        "email": user.company.email,
-        "phone": user.company.phone,
+        "name": editedName.companyName,
+        "email": editedName.companyEmail,
+        "phone": editedName.companyPhone,
         "address": {
             "name":null ,
-            "post_code":user.company.address.postCode,
-            "address":user.company.address.name,
-            "extra":user.company.address.extra,
-            "detail":user.company.address.detail,
-            "location_x":user.company.address.location_x,
-            "location_y":user.company.address.location_y
+            "post_code":editedName.postCode,
+            "address":editedName.address,
+            "extra":editedName.extra,
+            "detail":editedName.companyAdressDetail,
+            "location_x":editedName.coordinates.longitude,
+            "location_y":editedName.coordinates.latitude,
         }
     },
     },
