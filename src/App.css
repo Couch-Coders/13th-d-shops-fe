@@ -193,3 +193,20 @@
 }
 
 
+
+/* 디테일 페이지 */
+
+.product_wrap{
+  padding:50px;
+  margin-top:5%;
+  background-color: #f9f9f9;
+}
+.product_title{
+  margin-bottom: 10%;
+}
+.company_info{
+  width: 90%;
+  padding:30px;
+  border : 1px dotted gray;
+  background-color: rgb(255, 255, 255)
+}
