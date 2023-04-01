@@ -173,11 +173,11 @@
 }
 .mypage_navigate_header{
   width: 100%;
-  height: 300px;
+  height: 200px;
   background-color:#395E97;
   text-align: center;
   color:white;
-  padding:40% 0;
+  padding:25% 0;
 }
 
 .mypage_navigate{
@@ -211,15 +211,39 @@
 }
 /* 내상품 목록리스트 */
 
+.myproductlist_header_box{
+  display: flex;
+  justify-content: space-between;
+  margin-left: 15%;
+  margin-top:12%;
+  width: 1300px;
+}
 
+.myproductlist_header_btn{
+  background-color: #395E97;
+  color: white;
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  
+}
 .mypagelist_box{
 box-sizing: border-box;
 }
-.myproductlist_wrap{
- border:1px solid rgb(148, 21, 21);
-margin-left: 20%;
+
+.myproductlist_product_wrap{
+  border: 1px solid rgb(212, 212, 212);
+  margin-left: 15%;
+  overflow: scroll;
+  width: 1300px;
+  height: 600px;
+}
+
+.myproductlist_productbox{
+background-color: rgb(255, 255, 255);
 padding:50px;
-width: 70%;
+position: relative;
 
 }
 .myproductlist_boxs{
@@ -227,12 +251,66 @@ width: 70%;
   border: 1px solid black;
 
 }
-.myproductlist{
- float: left;
+
+
+.myproductlist_productbox{
+
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  margin:20px;
+  border: 1px dotted rgb(196, 196, 196);
 }
-/* 수정 */
+.myproductlist_img{
+  float: left;
+  
 
+}
+.myproductlist_text{
+  position: absolute;
+  left:30%;
+  top:20%;
 
+}
+.myprocutlist_options{
+  color:rgb(255, 111, 0);
+  font-size: 1.2rem;
+}
+.mypageproductlist_product_btn{
+  position: absolute;
+  bottom:5%;
+  right: 1%;
+ 
+}
+
+.mypageproductlist_product{
+  background-color: #ffffff;
+  color:rgb(0, 0, 0);
+  text-decoration: none;
+  padding:10px 30px;
+  margin-right: 20px;
+  border-radius: 20px;
+  border: 1px dotted gray;
+}
+
+.mypageproductlist_delet{
+  background-color: #ffffff;
+  color:rgb(0, 0, 0);
+  text-decoration: none;
+  padding:8px 30px;
+  margin-right: 20px;
+  border-radius: 20px;
+  border: 1px dotted gray;
+}
+
+.my_img{
+  width: 300px;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+
+}
 /* 디테일 페이지 */
 
 .product_wrap{

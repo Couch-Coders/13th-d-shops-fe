@@ -16,7 +16,7 @@ const postProduct = async (product,my) => {
     
   });
   return responsePost.data;
-  // console.log(responsePost.data);
+ 
   //받아온 자료 확인하기
   // const responseGet = await axios.get("/products/" + responsePost.data.seq);
   // console.log(responseGet.data);
