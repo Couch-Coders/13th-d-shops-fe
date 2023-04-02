@@ -97,7 +97,9 @@ export default function MainPage() {
           <div id="map" style={{ width: "500px", height: "400px" }}></div>
         </div>
       )} */}
-      <Descriptions title="최신상품"></Descriptions>
+      <div className="main_products_title">
+      <Descriptions title="최신상품" ></Descriptions>
+      </div>
       <List
         grid={{
           gutter: 16,
@@ -110,10 +112,10 @@ export default function MainPage() {
         }}
         dataSource={productNear}
         renderItem={(item) => (
-          <List.Item>
+          <List.Item className="main_cardlist">
             <Card
               style={{
-                width: 200,
+                width: 300,
                 height: 300,
               }}
               cover={
