@@ -2,6 +2,7 @@ import axios from "axios";
 // 20230326 jay 품목 등록
 const postProduct = async (product,my) => {
   console.log(my)
+  console.log(product)
   const responsePost = await axios.post("/users/me/products", {
     title: product.title,
     options: product.options,
@@ -22,6 +23,8 @@ const postProduct = async (product,my) => {
   },
     
   });
+
+  
   return responsePost.data;
  
   //받아온 자료 확인하기
@@ -29,23 +32,7 @@ const postProduct = async (product,my) => {
   // console.log(responseGet.data);
 };
 
-const onfileupload = async (file) => {
-  console.log(file)
-  const formData = new FormData();
-  formData.append("files",file );
-  try {
-    const response = await axios.post(`/products/1/images`, formData, {
-      headers: {
-        "Contest-Type": "multipart/form-data",
-      },
-      withCredentials: true,
-    });
-    console.log(response.data);
-    console.log("성공");
-  } catch (e) {
-    console.log(e);
-  }
-};
+
 
 // 20230326 jay 품목 읽기
 const getProduct = async (seq) => {
@@ -79,6 +66,6 @@ const deleteProduct = async (seq) => {
   return response.data;
 };
 
-const ProductService = { postProduct, getProduct, putProduct, deleteProduct,onfileupload };
+const ProductService = {  postProduct, getProduct, putProduct, deleteProduct};
 
 export default ProductService;
