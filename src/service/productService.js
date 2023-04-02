@@ -6,13 +6,20 @@ const postProduct = async (product,my) => {
     title: product.title,
     options: product.options,
     description: product.description,
-    location_x:my.company.address.location_x,
-    location_y:my.company.address.location_y,
-    name:my.company.name,
- 
-
-    //이건 내정보에서 가져오기
-   
+    "company": {
+      "name": my.company.name,
+      "email": my.company.email,
+      "phone": my.company.phone,
+      "address": {
+          "name":null ,
+          "post_code":my.company.address.post_code,
+          "address":my.company.address.address,
+          "extra":my.company.address.extra,
+          "detail":my.company.address.detail,
+          "location_x":my.company.address.location_x,
+          "location_y":my.company.address.location_y,
+      }
+  },
     
   });
   return responsePost.data;
@@ -20,6 +27,24 @@ const postProduct = async (product,my) => {
   //받아온 자료 확인하기
   // const responseGet = await axios.get("/products/" + responsePost.data.seq);
   // console.log(responseGet.data);
+};
+
+const onfileupload = async (file) => {
+  console.log(file)
+  const formData = new FormData();
+  formData.append("files",file );
+  try {
+    const response = await axios.post(`/products/1/images`, formData, {
+      headers: {
+        "Contest-Type": "multipart/form-data",
+      },
+      withCredentials: true,
+    });
+    console.log(response.data);
+    console.log("성공");
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 // 20230326 jay 품목 읽기
@@ -54,6 +79,6 @@ const deleteProduct = async (seq) => {
   return response.data;
 };
 
-const ProductService = { postProduct, getProduct, putProduct, deleteProduct };
+const ProductService = { postProduct, getProduct, putProduct, deleteProduct,onfileupload };
 
 export default ProductService;
