@@ -8,7 +8,9 @@
 *{
   font-family: "SUIT-Regular";
 }
-
+body{
+  background-color:  #F1F1F5 !important;
+}
 
 
 .header {
@@ -16,6 +18,7 @@
   justify-content: space-between;
   align-items: center;
   font-family: "SUIT-Regular";
+  background-color: white;
 }
 .header_right {
   display: flex;
@@ -311,19 +314,67 @@ position: relative;
      object-fit: cover;
 
 }
-/* 디테일 페이지 */
+/* 디테일 페이지(ProductDetail) */
 
 .product_wrap{
-  padding:50px;
-  margin-top:5%;
-  background-color: #f9f9f9;
+  padding:30px 0;
+  background-color: white;
+
+}
+.detail_title{
+  padding:20px 0;
+  margin-left:15%;
+  font-size: 2rem;
 }
 .product_title{
-  margin-bottom: 10%;
+  border-bottom: 1px solid gray;
+  margin:10px 0;
 }
 .company_info{
-  width: 90%;
-  padding:30px;
-  border : 1px dotted gray;
-  background-color: rgb(255, 255, 255)
+  width: 100%;
+  padding:30px 5px;
+  border : 1px dotted rgb(209, 209, 209);
+  background-color: rgb(255, 255, 255);
+  margin:10px 0;
+}
+.productdetial_event{
+  border:1px dotted rgb(209, 209, 209);
+  padding:10px;
+  font-size: 0.9rem;
+}
+
+.company_btn{
+  background-color: #395E97;
+  width: 100%;
+  margin-top:50px;
+  padding:10px;
+  color: white;
+  border: none;
+  border-radius: 20px;
+}
+.detail_des_wrap{
+ 
+  padding:10px;
+  margin-top:20px;
+}
+.detail_des{
+  margin:auto;
+  overflow: scroll;
+  height: 200px;
+}
+.datail_des_title{
+  border-bottom: 1px solid rgb(190, 190, 190);
+  padding-bottom: 20px;
+}
+
+/* 상품 등록/수정 페이지(product) */
+
+#chooseFile{
+  visibility: hidden;
+}
+.imgadd_btn{
+  border:1px solid  gray;
+  color:rgb(121, 121, 121);
+  padding:5px;
+  cursor: pointer;
 }
