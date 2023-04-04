@@ -1,7 +1,10 @@
-
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import ErrorService from "../service/errorService";
-import { postProduct, imageDate, onGetMyProduct,  } from '../service/productService'
+import {
+  postProduct,
+  imageDate,
+  onGetMyProduct,
+} from "../service/ProductService";
 const initialState = {
   product: null,
   loading: false,
@@ -22,29 +25,28 @@ export const productThunk = createAsyncThunk(
 
 export const productUpdateThunk = createAsyncThunk(
   "product/Updateproduct",
-  async(updateproduct,thunkApi)=>{
-  
+  async (updateproduct, thunkApi) => {
     try {
-      return await postProduct(updateproduct);  
+      return await postProduct(updateproduct);
     } catch (error) {
       const message = ErrorService.axiosErrorHandler(error);
       return thunkApi.rejectWithValue(message);
     }
   }
-)
+);
 
 export const imageUpdateThunk = createAsyncThunk(
   "product/Updateimage",
-  async(imagedate,thunkApi)=>{
-    const {file,seq} = imagedate
+  async (imagedate, thunkApi) => {
+    const { file, seq } = imagedate;
     try {
-      return await imageDate(file,seq);  
+      return await imageDate(file, seq);
     } catch (error) {
       const message = ErrorService.axiosErrorHandler(error);
       return thunkApi.rejectWithValue(message);
     }
   }
-)
+);
 
 const productSlice = createSlice({
   name: "product",
