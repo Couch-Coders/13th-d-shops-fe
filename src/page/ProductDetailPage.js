@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { myInfoThunk } from "../stores/myInfoSlice";
 import { Container, Row, Col } from "react-bootstrap";
-import ProductService from "../service/ProductService";
+import ProductService from "../service/productService";
 
 export default function Product_Detail() {
   const [product, setProduct] = useState();

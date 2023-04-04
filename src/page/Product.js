@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import ProductService from "../service/ProductService";
+import ProductService from "../service/productService";
 import { myInfoThunk } from "../stores/myInfoSlice";
 import axios from "axios";
 
@@ -40,7 +40,7 @@ const Product = () => {
     formData.append("files", event.target.files[0]);
     try {
       const response = await axios.post(
-        `users/me/products/${product.seq}/images`,
+        `/users/me/products/${product.seq}/images`,
         formData,
         {
           headers: {

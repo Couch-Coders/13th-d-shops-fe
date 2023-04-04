@@ -1,7 +1,7 @@
 
 import { Row,Col } from 'antd'
-import React, { useEffect, useState } from 'react'
-import MypageProductService from '../service/MypageProductService';
+import React from 'react'
+import MypageProductService from '../service/mypageProductService';
 
 export default function ProductCard({item}) {
 

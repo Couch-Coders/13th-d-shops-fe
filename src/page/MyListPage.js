@@ -1,16 +1,17 @@
 import { Row, Col } from "antd";
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import MyPageNavigate from "../component/MyPageNavigate";
 import MyPageProductCard from "../component/MyPageProductCard";
-import MypageProductService from "../service/MypageProductService";
-import ProductService from "../service/ProductService";
+import MypageProductService from "../service/mypageProductService";
 
-export default function MyListPage({ item }) {
+
+export default function MyListPage() {
   const [product, setProduct] = useState();
   const navigate = useNavigate();
+  
   const handleDelete = async (seq) => {
-    const result = await MypageProductService.deleteProduct(seq);
+  const result = await MypageProductService.deleteProduct(seq);
     console.log(result);
   };
   useEffect(() => {

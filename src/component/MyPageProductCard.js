@@ -1,13 +1,7 @@
-import React, { useEffect } from "react";
-import { Row, Col } from "antd";
-import { Link, useNavigate } from "react-router-dom";
-import MyPageNavigate from "../component/MyPageNavigate";
-import MypageProductService from "../service/MypageProductService";
-import { useSelector } from "react-redux";
-import ProductService from "../service/ProductService";
+import React from "react";
+import { Link} from "react-router-dom";
+import MypageProductService from "../service/mypageProductService";
 export default function MyPageProductCard({ item }) {
-  const navigate = useNavigate();
-  console.log(item);
 
   const handleDelete = async (seq) => {
     const result = await MypageProductService.deleteProduct(seq);
