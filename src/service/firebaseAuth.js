@@ -7,13 +7,13 @@ import {
 } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCQiIIqvDrHCsZvjjUik5FO1vr4tpuULMQ",
-  authDomain: "th-d-shops-be.firebaseapp.com",
-  projectId: "th-d-shops-be",
-  storageBucket: "th-d-shops-be.appspot.com",
-  messagingSenderId: "449833903149",
-  appId: "1:449833903149:web:8e4fda24bdc5e0ff0a04a4",
-  measurementId: "G-GJSHLEJ3ED",
+  apiKey: process.env.REACT_APP_FITEBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FITEBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FITEBASE_PRODUCTID,
+  storageBucket: process.env.REACT_APP_FITEBASE_STORAGEBUCKET,
+  messagingSenderId: process.env.REACT_APP_FITEBASE_MESSAGINGSENDERID,
+  appId: process.env.REACT_APP_FITEBASE_APPID,
+  measurementId: process.env.REACT_APP_MEASUREMENTID,
 };
 
 const app = initializeApp(firebaseConfig);

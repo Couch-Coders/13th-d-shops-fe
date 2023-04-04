@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { SearchOutlined } from "@ant-design/icons";
 import Navbar from "./Navbar";
-import ProductListService from "../service/ProductListService";
+import ProductListService from "../service/productListService";
 export default function Header() {
   const [inputs, setInputs] = useState({});
   const [productSearch, setProductSearch] = useState([]);
@@ -33,7 +33,7 @@ export default function Header() {
       <Link to="/">
         <img
           width={200}
-          src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FV8fHf%2Fbtr4PqndKIw%2F4BziaW30wr6i7g60T4z7PK%2Fimg.png"
+          src="/image/logo.png"
         ></img>
       </Link>
       <div className="header_inputBox">
@@ -46,8 +46,8 @@ export default function Header() {
           type="text"
           placeholder="상품을 검색해 주세요"
         ></input>
-        <div className="Search">
-          <SearchOutlined />
+        <div >
+          <SearchOutlined className="Search"/>
         </div>
       </div>
       <div className="header_right">

@@ -1,17 +1,26 @@
 import Carousel from "../component/Carousel";
 import React, { useEffect, useState } from "react";
-import MainPageService from "../service/MainPageService";
+import MainPageService from "../service/mainPageService";
 import { Card, List ,Descriptions} from "antd";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
+import { myInfoThunk } from "../stores/myInfoSlice";
+import ProductListService from "../service/productListService";
+
 const { Meta } = Card;
 
 export default function MainPage() {
+  const navigate  = useNavigate()
   const user = useSelector((state) => state.user.user);
   const [productNear, setProductNear] = useState([]);
   const [userLocation, setUserLocation] = useState({
     latitude: 33.450701,
     longitude: 126.570667,
   });
+
+  const dispatch = useDispatch()
+
+  const [product,setProduct] = useState()
 
   useEffect(() => {
     // 20230327 jay 현재 위치 받아오기
@@ -85,6 +94,29 @@ export default function MainPage() {
     };
   }, [user]);
 
+  useEffect(() => {
+    // 20230327 jay 로딩시 데이터 늦게 받아오는 문제 해결
+  
+    const fetchData = async () => {
+      const result = await ProductListService.getProduct();
+      // console.log("result", result);
+      console.log(result.content)
+      setProduct(result.content);
+     
+    };
+
+    // call the function
+    fetchData()
+      // make sure to catch any error
+      .catch(console.error);
+
+    console.log("값이 설정됨");
+    return () => {
+      console.log("가 바뀌기 전..");
+    };
+  }, []);
+
+
   return (
     <div>
       <div>
@@ -110,24 +142,24 @@ export default function MainPage() {
           xl: 5,
           xxl: 5,
         }}
-        dataSource={productNear}
+        dataSource={product}
         renderItem={(item) => (
-          <List.Item className="main_cardlist">
+          <List.Item onClick={()=>{navigate(`/products/${item.seq}` )}} className="main_cardlist">
             <Card
               style={{
                 width: 300,
-                height: 300,
+                height: 350,
               }}
               cover={
-                <img
+                <img className="main_img"
                   alt="example"
-                  src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                  src={`${item?.images[0]?.url}`}
                 />
               }
               actions={[]}
             >
               <Meta title={item.title} />
-              <p>성남시 중원구</p>
+              <p>{item.company.address.address}</p>
               <Meta description={item.options} />
             </Card>
           </List.Item>

@@ -27,6 +27,7 @@ useEffect(() => {
   };
 
 
+
   // call the function
   fetchData()
     // make sure to catch any error
@@ -47,7 +48,7 @@ useEffect(() => {
         <Row>
           <Col lg={5}>
           <div>
-            <img width={500} src='http://brunt.godohosting.com/gd5replace/bruntco2/data/assets/images/visuals/collectionb/brands/tradition/1000022809/1.jpg'></img>
+            <img width={500} src={product?.images[0].url}></img>
           </div>
           </Col>
           <Col lg={7}>

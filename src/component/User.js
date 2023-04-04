@@ -5,7 +5,7 @@ import { BsFillPencilFill } from "react-icons/bs";
 export default function User({ user: { imgUrl, displayName } }) {
   return (
     <div className="login_userMenu">
-      <Link to="/product" className="edit">
+      <Link to="/mypage" className="edit">
         <BsFillPencilFill />
       </Link>
       <Link to="mypage" className="username">
