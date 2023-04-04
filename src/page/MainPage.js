@@ -1,16 +1,16 @@
 import Carousel from "../component/Carousel";
 import React, { useEffect, useState } from "react";
-import MainPageService from "../service/mainPageService";
-import { Card, List ,Descriptions} from "antd";
+import MainPageService from "../service/MainPageService";
+import { Card, List, Descriptions } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { myInfoThunk } from "../stores/myInfoSlice";
-import ProductListService from "../service/productListService";
+import ProductListService from "../service/ProductListService";
 
 const { Meta } = Card;
 
 export default function MainPage() {
-  const navigate  = useNavigate()
+  const navigate = useNavigate();
   const user = useSelector((state) => state.user.user);
   const [productNear, setProductNear] = useState([]);
   const [userLocation, setUserLocation] = useState({
@@ -18,9 +18,9 @@ export default function MainPage() {
     longitude: 126.570667,
   });
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const [product,setProduct] = useState()
+  const [product, setProduct] = useState();
 
   useEffect(() => {
     // 20230327 jay 현재 위치 받아오기
@@ -96,13 +96,12 @@ export default function MainPage() {
 
   useEffect(() => {
     // 20230327 jay 로딩시 데이터 늦게 받아오는 문제 해결
-  
+
     const fetchData = async () => {
       const result = await ProductListService.getProduct();
       // console.log("result", result);
-      console.log(result.content)
+      console.log(result.content);
       setProduct(result.content);
-     
     };
 
     // call the function
@@ -115,7 +114,6 @@ export default function MainPage() {
       console.log("가 바뀌기 전..");
     };
   }, []);
-
 
   return (
     <div>
@@ -130,7 +128,7 @@ export default function MainPage() {
         </div>
       )} */}
       <div className="main_products_title">
-      <Descriptions title="최신상품" ></Descriptions>
+        <Descriptions title="최신상품"></Descriptions>
       </div>
       <List
         grid={{
@@ -144,14 +142,20 @@ export default function MainPage() {
         }}
         dataSource={product}
         renderItem={(item) => (
-          <List.Item onClick={()=>{navigate(`/products/${item.seq}` )}} className="main_cardlist">
+          <List.Item
+            onClick={() => {
+              navigate(`/products/${item.seq}`);
+            }}
+            className="main_cardlist"
+          >
             <Card
               style={{
                 width: 300,
                 height: 350,
               }}
               cover={
-                <img className="main_img"
+                <img
+                  className="main_img"
                   alt="example"
                   src={`${item?.images[0]?.url}`}
                 />
