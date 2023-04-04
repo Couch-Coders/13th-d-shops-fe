@@ -2,9 +2,8 @@ import Carousel from "../component/Carousel";
 import React, { useEffect, useState } from "react";
 import MainPageService from "../service/mainPageService";
 import { Card, List ,Descriptions} from "antd";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
-import { myInfoThunk } from "../stores/myInfoSlice";
 import ProductListService from "../service/productListService";
 
 const { Meta } = Card;
@@ -17,8 +16,6 @@ export default function MainPage() {
     latitude: 33.450701,
     longitude: 126.570667,
   });
-
-  const dispatch = useDispatch()
 
   const [product,setProduct] = useState()
 

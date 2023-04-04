@@ -1,32 +1,20 @@
-import React, { useEffect } from 'react'
-import { Row,Col } from 'antd'
+import React from 'react'
 import { Link,  useNavigate } from 'react-router-dom';
-import MyPageNavigate from '../component/MyPageNavigate';
 import MypageProductService from '../service/mypageProductService';
-import { useSelector } from 'react-redux';
-import ProductService from '../service/productService';
 export default function MyPageProductCard({item}) {
-  const navigate =useNavigate()
-  console.log(item)
+
   
   const handleDelete = async (seq)=>{
     const result = await MypageProductService.deleteProduct(seq)
-    console.log(result.con)
 
     alert("삭제 되었습니다.")
 
   }
-
-  
     return (
     <>
     <div>
-      
-      
       <div className='myproductlist_productbox'>
-        
       <img  className="my_img" src={item?.images[0]?.url}></img>
-     
       <div className='myproductlist_text'>
       <h3>{item?.title}</h3> 
       <div className='myprocutlist_options'>#{item?.options}</div>

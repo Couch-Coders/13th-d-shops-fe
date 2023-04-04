@@ -1,26 +1,17 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { SearchOutlined } from "@ant-design/icons";
-import Navbar from "./Navbar";
-import ProductListService from "../service/productListService";
+import Navbar from "./Navbar"; 
+
 export default function Header() {
   const [inputs, setInputs] = useState({});
-  const [productSearch, setProductSearch] = useState([]);
   const navigate = useNavigate()
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInputs((inputs) => ({ ...inputs, [name]: value }));
   };
-  const handleOnLoadProductSearch = async (e) => {
-    e.preventDefault();
-
-    const result = await ProductListService.getProductSearch(inputs.keyword);
-    // console.log("result", result.content);
-
-    setProductSearch(result.content);
-  };
+  
   const onSubmitSearch = (e)=>{
-   
     if(e.key === "Enter"){
       let keyword = e.target.value;
       console.log(keyword)

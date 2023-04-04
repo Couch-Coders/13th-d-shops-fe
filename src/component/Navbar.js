@@ -1,8 +1,6 @@
-import React, { useState,useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
-import signIn, { onGetMyInfo, onUserPut1 } from "../service/authservice";
 import { googleSignIn, googleSignOut } from "../service/firebaseAuth";
 import User from "./User";
 
