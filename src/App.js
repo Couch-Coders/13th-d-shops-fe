@@ -1,9 +1,9 @@
 import "./App.css";
-import React, { useEffect, useState } from "react";
+import React, { useEffect,  } from "react";
 import { onAuthStateChanged } from "firebase/auth";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, } from "react-redux";
 import { getUserThunk, logOutUserThunk } from "./stores/auth/authSlice";
-import { auth, googleSignOut } from "./service/firebaseAuth";
+import { auth,  } from "./service/firebaseAuth";
 import Header from "./component/Header";
 import { Routes, Route } from "react-router-dom";
 import MainPage from "./page/MainPage";
@@ -12,9 +12,7 @@ import ProductDetailPage from "./page/ProductDetailPage";
 import MyPage from "./page/MyPage";
 import Product from "./page/Product";
 import MyListPage from "./page/MyListPage";
-import TestPage from "./page/TestPage";
-import ImageTest from "./component/ImageTest";
-import Test from "./component/Test";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -43,7 +41,7 @@ function App() {
           <Route path="/product" element={<Product/>}></Route>
           <Route path="/product/:id" element={<Product/>}></Route>
           <Route path="/mylist" element={<MyListPage/>}></Route>
-          <Route path="/test" element={<Test/>}></Route>
+        
         </Routes>
     </div>
   );
