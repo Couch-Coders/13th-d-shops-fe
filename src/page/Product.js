@@ -39,8 +39,9 @@ const Product = () => {
     const formData = new FormData();
     formData.append("files", event.target.files[0]);
     try {
+      axios.defaults.baseURL = "";
       const response = await axios.post(
-        `users/me/products/${product.seq}/images`,
+        `/users/me/products/${product.seq}/images`,
         formData,
         {
           headers: {
