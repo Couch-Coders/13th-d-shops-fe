@@ -7,17 +7,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import DaumPostcode from 'react-daum-postcode';
 import axios from 'axios'
 import { myInfoThunk, myInfoUpdateThunk } from '../stores/myInfoSlice'
-import { Link, useNavigate } from 'react-router-dom'
 import Table from 'react-bootstrap/Table';
 import { HiLocationMarker } from 'react-icons/hi';
-import {Container ,Row,Col} from 'react-bootstrap';
+import {Row,Col} from 'react-bootstrap';
 import MyPageNavigate from '../component/MyPageNavigate';
 
 export default function MyPage() {
 
   const [openPostcode, setOpenPostcode] = React.useState(false);
   const [address,setAddress] = useState()
-  let navigate = useNavigate()
 //경도 위도
 
   const handleAddressChange = async(data) => {
@@ -102,9 +100,10 @@ return (
     <Col lg={9}>
     
   <form>
+  <h2 className='mypage_myinfo_title'>내정보</h2>
     <Table striped bordered hover className='tables'>
       <thead>
-        <h1>내정보</h1>
+        
           <tr>
             <th colSpan={2}>내정보</th>
           </tr>
@@ -128,12 +127,13 @@ return (
         </tr>
       </tbody>
     </Table>
-    
-    <Table striped bordered hover className='tables'>
-      <thead>
-        <div className='mypage_edit'>
-          <h1>사업자 정보</h1>
+    <div className='mypage_edit'>
+          <h2 className='mypage_company_title'>사업자 정보</h2>
         </div>
+    <Table striped bordered hover className='tables'>
+      
+      <thead>
+        
         <tr>
           <th colSpan={2}>사업자 정보</th>
         </tr>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -7,7 +7,10 @@ import { googleSignIn, googleSignOut } from "../service/firebaseAuth";
 import User from "./User";
 
 export default function Navbar() {
+
   const user = useSelector((state) => state.user.user);
+  
+
  
   return (
     <div className="header_right">

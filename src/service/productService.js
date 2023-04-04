@@ -1,29 +1,61 @@
 import axios from "axios";
-// 20230326 jay 품목 등록
-const postProduct = async (product,my) => {
-  console.log(my)
-  const responsePost = await axios.post("/users/me/products", {
-    title: product.title,
-    options: product.options,
-    description: product.description,
-    location_x:my.company.address.location_x,
-    location_y:my.company.address.location_y,
-    name:my.company.name,
- 
 
-    //이건 내정보에서 가져오기
-   
+export const onGetMyProduct = async () => {
+  const response = await axios.get("/users/me/products");
+  return response.data
+  
+};
+
+
+// 20230326 jay 품목 등록
+export const postProduct = async (product,my) => {
+  const responsePost = await axios.post(
+    "/users/me/products", 
+    {
+    "title": product.title,
+    "options": product.options,
+    "description": product.description,
+    "company": {
+      "name": my.company.name,
+      "email": my.company.email,
+      "phone": my.company.phone,
+      "address": {
+          "name":null ,
+          "post_code":my.company.address.post_code,
+          "address":my.company.address.address,
+          "extra":my.company.address.extra,
+          "detail":my.company.address.detail,
+          "location_x":my.company.address.location_x,
+          "location_y":my.company.address.location_y,
+      },
+    }
+  
+//  },
     
-  });
-  return responsePost.data;
-  // console.log(responsePost.data);
+  },
+  {
+    withCredentials: true,
+  },
+  );
+  
+
+  
+return responsePost.data
+  // return responsePost.data;
+ 
   //받아온 자료 확인하기
   // const responseGet = await axios.get("/products/" + responsePost.data.seq);
   // console.log(responseGet.data);
 };
 
+export const imageDate = async (file,seq)=>{
+  
+}
+
+
+
 // 20230326 jay 품목 읽기
-const getProduct = async (seq) => {
+export const getProduct = async (seq) => {
   const response = await axios.get("/products/" + seq);
   // console.log(response.data);
   // inputs.seq = response.data.seq;
@@ -42,6 +74,7 @@ const putProduct = async (product) => {
     title: product.title,
     options: product.options,
     description: product.description,
+    
   });
   // console.log(response.data);
   return response.data;
@@ -54,6 +87,7 @@ const deleteProduct = async (seq) => {
   return response.data;
 };
 
-const ProductService = { postProduct, getProduct, putProduct, deleteProduct };
+
+const ProductService = {onGetMyProduct, postProduct, getProduct, putProduct, deleteProduct};
 
 export default ProductService;

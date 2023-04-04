@@ -2,21 +2,21 @@ import "./App.css";
 import React, { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserThunk } from "./stores/auth/authSlice";
-import { auth } from "./service/firebaseAuth";
+import { getUserThunk, logOutUserThunk } from "./stores/auth/authSlice";
+import { auth, googleSignOut } from "./service/firebaseAuth";
 import Header from "./component/Header";
 import { Routes, Route } from "react-router-dom";
 import MainPage from "./page/MainPage";
 import ProductList from "./page/ProductList";
-import MyPage_List from "./page/MyPage_List";
-import Product_Detail from "./page/Product_Detail";
+import ProductDetailPage from "./page/ProductDetailPage";
 import MyPage from "./page/MyPage";
-
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Product from "./page/Product";
-function App() {
-  const queryClient = new QueryClient();
+import MyListPage from "./page/MyListPage";
+import TestPage from "./page/TestPage";
+import ImageTest from "./component/ImageTest";
+import Test from "./component/Test";
 
+function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -25,25 +25,26 @@ function App() {
 
         console.log(token);
         dispatch(getUserThunk(token));
+      }else if(!user){
+        dispatch(logOutUserThunk())
       }
+      
     });
     return unsubscribe;
   }, [dispatch]);
   return (
     <div className="App">
-      <QueryClientProvider client={queryClient}>
         <Header />
-
         <Routes>
           <Route path="/" element={<MainPage />}></Route>
           <Route path="/products" element={<ProductList />}></Route>
-          <Route path="/products/:id" element={<Product_Detail />}></Route>
+          <Route path="/products/:id" element={<ProductDetailPage />}></Route>
           <Route path="/mypage" element={<MyPage />}></Route>
           <Route path="/product" element={<Product/>}></Route>
           <Route path="/product/:id" element={<Product/>}></Route>
-          <Route path="/mylist" element={<MyPage_List />}></Route>
+          <Route path="/mylist" element={<MyListPage/>}></Route>
+          <Route path="/test" element={<Test/>}></Route>
         </Routes>
-      </QueryClientProvider>
     </div>
   );
 }

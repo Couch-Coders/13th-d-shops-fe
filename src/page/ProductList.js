@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
-import ProductListService from "../service/ProductListService";
+
 import { Card, List } from "antd";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-
-export default function ProductList(props) {
+import ProductListService from "../service/productListService";
+const { Meta } = Card;
+export default function ProductList() {
   const [query,setQuery] = useSearchParams()
   const [product, setProduct] = useState([]);
-  const [productSearch, setProductSearch] = useState([]);
   const navigate  = useNavigate()
- 
- 
+  console.log(product)
   const handleOnLoadProduct = async (e) => {
     e.preventDefault();
 
@@ -56,8 +55,10 @@ export default function ProductList(props) {
 
   return (
     <div>
-      <div>ProductList</div>
-      <button onClick={handleOnLoadProduct}>전체상품보기</button>
+      
+      <div className="productlist_btn_box">
+      <button className="productlist_btn"  onClick={handleOnLoadProduct}>전체상품보기</button>
+      </div>
       <List
         grid={{
           gutter: 16,
@@ -65,21 +66,36 @@ export default function ProductList(props) {
           sm: 2,
           md: 4,
           lg: 4,
-          xl: 6,
-          xxl: 3,
+          xl: 4,
+          xxl: 4,
         }}
         // dataSource={inputs.data?.content}
         dataSource={product}
         renderItem={(item) => (
-          <List.Item onClick={()=>{navigate(`/products/${item.seq}` )}}>
-            <Card  title={item.title}>{item.description}</Card>
-          </List.Item>
-        )}
+          <List.Item onClick={()=>{navigate(`/products/${item.seq}` )}} className="main_cardlist">
+          <Card
+            style={{
+              width: 400 ,
+              height: 400,
+            }}
+            cover={
+              <img height={300}
+                alt="example"
+                src={item?.images[0]?.url}
+              />
+            }
+            actions={[]}
+          >
+            <Meta title={item.title} />
+            <p>성남시 중원구</p>
+            <Meta description={item.options} />
+          </Card>
+          
+        </List.Item>
+      )}
+     
       />
    
-    
-
-    
     </div>
   );
 }
