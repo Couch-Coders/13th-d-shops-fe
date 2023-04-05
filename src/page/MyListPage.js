@@ -5,13 +5,12 @@ import MyPageNavigate from "../component/MyPageNavigate";
 import MyPageProductCard from "../component/MyPageProductCard";
 import MypageProductService from "../service/mypageProductService";
 
-
 export default function MyListPage() {
   const [product, setProduct] = useState();
   const navigate = useNavigate();
-  
+
   const handleDelete = async (seq) => {
-  const result = await MypageProductService.deleteProduct(seq);
+    const result = await MypageProductService.deleteProduct(seq);
     console.log(result);
   };
   useEffect(() => {
