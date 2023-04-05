@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { Card, List } from "antd";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-import ProductListService from "../service/productListService";
+import ProductListService from "../service/ProductListService";
 const { Meta } = Card;
 export default function ProductList() {
   const [query, setQuery] = useSearchParams();

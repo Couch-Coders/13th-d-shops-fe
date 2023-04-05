@@ -1,10 +1,10 @@
 import Carousel from "../component/Carousel";
 import React, { useEffect, useState } from "react";
-import MainPageService from "../service/mainPageService";
+import MainPageService from "../service/MainPageService";
 import { Card, List, Descriptions } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import ProductListService from "../service/productListService";
+import ProductListService from "../service/ProductListService";
 
 const { Meta } = Card;
 

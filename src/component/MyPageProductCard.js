@@ -1,8 +1,7 @@
 import React from "react";
-import { Link} from "react-router-dom";
-import MypageProductService from "../service/mypageProductService";
+import { Link } from "react-router-dom";
+import MypageProductService from "../service/MypageProductService";
 export default function MyPageProductCard({ item }) {
-
   const handleDelete = async (seq) => {
     const result = await MypageProductService.deleteProduct(seq);
     console.log(result.con);

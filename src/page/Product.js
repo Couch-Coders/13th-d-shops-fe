@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import ProductService from "../service/productService";
+import ProductService from "../service/ProductService";
 import { myInfoThunk } from "../stores/myInfoSlice";
 import axios from "axios";
 
