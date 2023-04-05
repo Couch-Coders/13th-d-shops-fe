@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ProductService from "../service/productService";
 import { myInfoThunk } from "../stores/myInfoSlice";
 import axios from "axios";
 
+const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
 const Product = () => {
   const { id } = useParams();
   const [product, setProduct] = useState({});
   const [file, setFile] = useState();
   const [imageSrc, setImageSrc] = useState(null);
   const dispatch = useDispatch();
-
+  const navigate = useNavigate()
   const my = useSelector((state) => state.myInfo.myInfo);
   useEffect(() => {
     dispatch(myInfoThunk());
@@ -41,7 +42,7 @@ const Product = () => {
     try {
       axios.defaults.baseURL = "";
       const response = await axios.post(
-        `/users/me/products/${product.seq}/images`,
+        `${PROXY}/users/me/products/${product.seq}/images`,
         formData,
         {
           headers: {
@@ -54,6 +55,8 @@ const Product = () => {
 
       console.log("성공");
       alert("이미지 등록 완료! ");
+     
+      
     } catch (e) {
       console.log(e);
     }
@@ -180,9 +183,10 @@ const Product = () => {
             <p>
               <strong>상품 저장 후 이미지를 등록해 주세요 😀</strong>
             </p>
-            <div>
+            {imageSrc ? <div>
               <img className="upload_img" src={imageSrc} />
-            </div>
+            </div>  : <div> <img width={300} src='/image/img.png'></img></div>}
+            
             <label for="upload-file" className="product_img_btn">
               이미지 등록하기{" "}
             </label>
@@ -195,6 +199,9 @@ const Product = () => {
                 style={{ visibility: "hidden" }}
               />
             </div>
+          </div>
+          <div>
+             
           </div>
         </div>
       </form>

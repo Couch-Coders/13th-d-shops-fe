@@ -1,7 +1,8 @@
 import axios from "axios";
+const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
 
 export const onGetMyProduct = async () => {
-  const response = await axios.get("/users/me/products");
+  const response = await axios.get(`${PROXY}/users/me/products`);
   return response.data
   
 };
@@ -10,7 +11,7 @@ export const onGetMyProduct = async () => {
 // 20230326 jay 품목 등록
 export const postProduct = async (product,my) => {
   const responsePost = await axios.post(
-    "/users/me/products", 
+    `${PROXY}/users/me/products`, 
     {
     "title": product.title,
     "options": product.options,
@@ -56,7 +57,7 @@ export const imageDate = async (file,seq)=>{
 
 // 20230326 jay 품목 읽기
 export const getProduct = async (seq) => {
-  const response = await axios.get("/products/" + seq);
+  const response = await axios.get(`${PROXY}/products/` + seq);
   // console.log(response.data);
   // inputs.seq = response.data.seq;
   // inputs.title = response.data.title;
@@ -69,7 +70,7 @@ export const getProduct = async (seq) => {
 
 // 20230326 jay 품목 수정
 const putProduct = async (product) => {
-  const response = await axios.put("/users/me/products/" + product.seq, {
+  const response = await axios.put(`${PROXY}/users/me/products/` + product.seq, {
     name: product.name,
     title: product.title,
     options: product.options,
@@ -82,7 +83,7 @@ const putProduct = async (product) => {
 
 // 20230326 jay 품목 삭제
 const deleteProduct = async (seq) => {
-  const response = await axios.delete("/users/me/products/" + seq);
+  const response = await axios.delete(`${PROXY}/users/me/products/` + seq);
   // console.log(response.data);
   return response.data;
 };

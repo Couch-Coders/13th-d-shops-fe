@@ -5,12 +5,14 @@ import { Card, List, Descriptions } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ProductListService from "../service/productListService";
+import { myInfoThunk, myLocationThunk } from "../stores/myInfoSlice";
 
 const { Meta } = Card;
 
 export default function MainPage() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.user);
+  const dispatch = useDispatch()
   const [productNear, setProductNear] = useState([]);
   const [userLocation, setUserLocation] = useState({
     latitude: 33.450701,
@@ -18,6 +20,10 @@ export default function MainPage() {
   });
 
   const [product, setProduct] = useState();
+
+  let my= useSelector((state)=>state.myInfo.myInfo)
+  console.log(my)
+  
 
   useEffect(() => {
     // 20230327 jay 현재 위치 받아오기
@@ -76,6 +82,8 @@ export default function MainPage() {
         userLocation.longitude,
         userLocation.latitude
       );
+      //  dispatch(myLocationThunk(userLocation.longitude,userLocation.latitude))
+        
       console.log("result", result);
       setProductNear(result.content);
     };
