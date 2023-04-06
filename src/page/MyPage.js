@@ -103,7 +103,6 @@ return (
   <h2 className='mypage_myinfo_title'>내정보</h2>
     <Table striped bordered hover className='tables'>
       <thead>
-        
           <tr>
             <th colSpan={2}>내정보</th>
           </tr>
@@ -133,7 +132,6 @@ return (
     <Table striped bordered hover className='tables'>
       
       <thead>
-        
         <tr>
           <th colSpan={2}>사업자 정보</th>
         </tr>
@@ -149,31 +147,31 @@ return (
         <tr>
           <td>사업장 주소 </td>
           <td>
-          <div>
-            <label> {my &&  my.company.address.address} , {my && my.company.address.detail}</label>
-            <div className='mapage_address_wrap'>
-            <label>주소 : </label>
-            <input   className='mypage_address_input'name='address'  value={editedName.address} required  onChange={handleNameChange}></input>
-            <label>상세주소 : </label>
-            <input name='companyAdressDetail'className='mypage_input' required  onChange={handleNameChange}></input>
-            <p onClick={handle.clickButton} className='MyPage_Location_btn'><HiLocationMarker/></p>
-          </div>
-              {openPostcode && 
-              <DaumPostcode 
-                  onComplete={handleAddressChange}  // 값을 선택할 경우 실행되는 이벤트
-                  autoClose={false} // 값을 선택할 경우 사용되는 DOM을 제거하여 자동 닫힘 설정
-                  defaultQuery='판교역로 235' // 팝업을 열때 기본적으로 입력되는 검색어 
-                  />}
-          </div>
+            <div>
+              <label> {my &&  my.company.address.address} , {my && my.company.address.detail}</label>
+              <div className='mapage_address_wrap'>
+              <label>주소 : </label>
+              <input   className='mypage_address_input'name='address'  value={editedName.address} required  onChange={handleNameChange}></input>
+              <label>상세주소 : </label>
+              <input name='companyAdressDetail'className='mypage_input' required  onChange={handleNameChange}></input>
+              <p onClick={handle.clickButton} className='MyPage_Location_btn'><HiLocationMarker/></p>
+            </div>
+                {openPostcode && 
+                <DaumPostcode 
+                    onComplete={handleAddressChange}  // 값을 선택할 경우 실행되는 이벤트
+                    autoClose={false} // 값을 선택할 경우 사용되는 DOM을 제거하여 자동 닫힘 설정
+                    defaultQuery='판교역로 235' // 팝업을 열때 기본적으로 입력되는 검색어 
+                    />}
+            </div>
           </td>
         </tr>
         <tr>
           <td>사업장 이메일 </td>
           <td>
-          <div>
-            <label> {my && my.company.email} </label>
-            <input name='companyEmail' className='mypage_input' required  onChange={handleNameChange} ></input>
-          </div>
+            <div>
+              <label> {my && my.company.email} </label>
+              <input name='companyEmail' className='mypage_input' required  onChange={handleNameChange} ></input>
+            </div>
           </td>
         </tr>
         <tr>
@@ -188,9 +186,7 @@ return (
       </tbody>
     </Table>
     <button className='mypage_edit_btn' onClick={handleSubmitPut}>수정하기</button>
-
   </form>
-  
     </Col>
     </Row>
   </>

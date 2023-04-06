@@ -1,7 +1,7 @@
-import { async } from "@firebase/util";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import ErrorService from "../service/errorService";
 import { onGetMyInfo, onUserPut1 } from "../service/authservice";
+
 
 const initialState = {
   myInfo: null,
@@ -33,6 +33,7 @@ export const myInfoUpdateThunk = createAsyncThunk(
   }
 )
 
+
 const myInfoSlice = createSlice({
   name: "myInfo",
   initialState,
@@ -59,6 +60,7 @@ const myInfoSlice = createSlice({
       state.loading = false;
       state.error = action.error.message ?? "";
     });
+   
   },
 });
 export default myInfoSlice.reducer;

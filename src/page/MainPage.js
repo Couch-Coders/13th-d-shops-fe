@@ -1,29 +1,30 @@
 import Carousel from "../component/Carousel";
 import React, { useEffect, useState } from "react";
 import MainPageService from "../service/mainPageService";
-import { Card, List ,Descriptions} from "antd";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from 'react-router-dom';
-import { myInfoThunk } from "../stores/myInfoSlice";
-import ProductListService from "../service/productListService";
+import { Card, List, Descriptions } from "antd";
+import {  useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import LoadingSpinners from "../component/LoadingSpinners";
 
 const { Meta } = Card;
 
 export default function MainPage() {
-  const navigate  = useNavigate()
+  const navigate = useNavigate();
   const user = useSelector((state) => state.user.user);
   const [productNear, setProductNear] = useState([]);
+  const [Loading,setLoading] = useState(false)
   const [userLocation, setUserLocation] = useState({
     latitude: 33.450701,
     longitude: 126.570667,
   });
 
-  const dispatch = useDispatch()
-
-  const [product,setProduct] = useState()
+  let my= useSelector((state)=>state.myInfo.myInfo)
+  console.log(my)
+  
 
   useEffect(() => {
     // 20230327 jay 현재 위치 받아오기
+    setLoading(true)
     const script = document.createElement("script");
     script.src =
       "//dapi.kakao.com/v2/maps/sdk.js?appkey=d25f19cf0a1860dd105275f8a970b86d&libraries=services";
@@ -74,13 +75,17 @@ export default function MainPage() {
     console.log("userLocation", userLocation);
     console.log("user", user);
     // 20230327 jay 로딩시 데이터 늦게 받아오는 문제 해결
+
     const fetchData = async () => {
       const result = await MainPageService.getProductNear(
         userLocation.longitude,
         userLocation.latitude
       );
+      //  dispatch(myLocationThunk(userLocation.longitude,userLocation.latitude))
+        
       console.log("result", result);
       setProductNear(result.content);
+      setLoading(false)
     };
 
     // call the function
@@ -92,30 +97,35 @@ export default function MainPage() {
     return () => {
       // console.log("product 가 바뀌기 전..");
     };
+    
   }, [user]);
 
-  useEffect(() => {
-    // 20230327 jay 로딩시 데이터 늦게 받아오는 문제 해결
-  
-    const fetchData = async () => {
-      const result = await ProductListService.getProduct();
-      // console.log("result", result);
-      console.log(result.content)
-      setProduct(result.content);
-     
-    };
+  // useEffect(() => {
+  //   // 20230327 jay 로딩시 데이터 늦게 받아오는 문제 해결
 
-    // call the function
-    fetchData()
-      // make sure to catch any error
-      .catch(console.error);
+  //   const fetchData = async () => {
+  //     const result = await ProductListService.getProduct();
+  //     // console.log("result", result);
+  //     console.log(result.content);
+  //     setProductNear(result.content);
+  //   };
 
-    console.log("값이 설정됨");
-    return () => {
-      console.log("가 바뀌기 전..");
-    };
-  }, []);
+  //   // call the function
+  //   fetchData()
+  //     // make sure to catch any error
+  //     .catch(console.error);
 
+  //   console.log("값이 설정됨");
+  //   return () => {
+  //     console.log("가 바뀌기 전..");
+  //   };
+  // }, []);
+
+  if(Loading){
+    return <div>
+      <LoadingSpinners/>
+    </div>
+  }
 
   return (
     <div>
@@ -130,7 +140,7 @@ export default function MainPage() {
         </div>
       )} */}
       <div className="main_products_title">
-      <Descriptions title="최신상품" ></Descriptions>
+        <Descriptions title="최신상품"></Descriptions>
       </div>
       <List
         grid={{
@@ -142,24 +152,30 @@ export default function MainPage() {
           xl: 5,
           xxl: 5,
         }}
-        dataSource={product}
+        dataSource={productNear}
         renderItem={(item) => (
-          <List.Item onClick={()=>{navigate(`/products/${item.seq}` )}} className="main_cardlist">
+          <List.Item
+            onClick={() => {
+              navigate(`/products/${item.seq}`);
+            }}
+            className="main_cardlist"
+          >
             <Card
               style={{
                 width: 300,
                 height: 350,
               }}
               cover={
-                <img className="main_img"
+                <img
+                  className="main_img"
                   alt="example"
-                  src={`${item?.images[0]?.url}`}
+                  src={`${item?.url}`}
                 />
               }
               actions={[]}
             >
               <Meta title={item.title} />
-              <p>{item.company.address.address}</p>
+              {/* <p>{item.company.address.address}</p> */}
               <Meta description={item.options} />
             </Card>
           </List.Item>

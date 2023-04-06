@@ -1,8 +1,9 @@
 import axios from "axios";
+const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
 
 const signIn = async ({ token }) => {
   const response = await axios.post(
-    "/auth",
+    `${PROXY}/auth`,
     {},
     {
       headers: { Authorization: `${token}` },
@@ -13,14 +14,14 @@ const signIn = async ({ token }) => {
 };
 
 export const onGetMyInfo = async () => {
-  const response = await axios.get("/users/me");
+  const response = await axios.get(`${PROXY}/users/me`);
   return response.data
   
 };
 
 export const onUserPut1 = async (editedName) => {
   const responsePut1 = await axios.put(
-    "/users/me",
+    `${PROXY}/users/me`,
     {
       "name":editedName.name,
     "phone": editedName.phone ,
@@ -49,7 +50,7 @@ export const onUserPut1 = async (editedName) => {
 };
 
 const signOut = async () => {
-  const response = await axios.delete("/auth", {
+  const response = await axios.delete(`${PROXY}/auth`, {
     withCredentials: true,
   });
   return response;
