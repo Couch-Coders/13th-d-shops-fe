@@ -2,10 +2,9 @@ import Carousel from "../component/Carousel";
 import React, { useEffect, useState } from "react";
 import MainPageService from "../service/mainPageService";
 import { Card, List, Descriptions } from "antd";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import ProductListService from "../service/productListService";
-import { myInfoThunk, myLocationThunk } from "../stores/myInfoSlice";
+import LoadingSpinners from "../component/LoadingSpinners";
 
 const { Meta } = Card;
 
@@ -13,6 +12,7 @@ export default function MainPage() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.user);
   const [productNear, setProductNear] = useState([]);
+  const [Loading,setLoading] = useState(false)
   const [userLocation, setUserLocation] = useState({
     latitude: 33.450701,
     longitude: 126.570667,
@@ -24,6 +24,7 @@ export default function MainPage() {
 
   useEffect(() => {
     // 20230327 jay 현재 위치 받아오기
+    setLoading(true)
     const script = document.createElement("script");
     script.src =
       "//dapi.kakao.com/v2/maps/sdk.js?appkey=d25f19cf0a1860dd105275f8a970b86d&libraries=services";
@@ -74,6 +75,7 @@ export default function MainPage() {
     console.log("userLocation", userLocation);
     console.log("user", user);
     // 20230327 jay 로딩시 데이터 늦게 받아오는 문제 해결
+
     const fetchData = async () => {
       const result = await MainPageService.getProductNear(
         userLocation.longitude,
@@ -83,6 +85,7 @@ export default function MainPage() {
         
       console.log("result", result);
       setProductNear(result.content);
+      setLoading(false)
     };
 
     // call the function
@@ -94,6 +97,7 @@ export default function MainPage() {
     return () => {
       // console.log("product 가 바뀌기 전..");
     };
+    
   }, [user]);
 
   // useEffect(() => {
@@ -116,6 +120,12 @@ export default function MainPage() {
   //     console.log("가 바뀌기 전..");
   //   };
   // }, []);
+
+  if(Loading){
+    return <div>
+      <LoadingSpinners/>
+    </div>
+  }
 
   return (
     <div>

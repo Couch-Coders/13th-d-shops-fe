@@ -228,7 +228,7 @@ body{
 }
 .mypage_navigate_title{
   padding:30px;
-
+  
 }
 /* 내상품 목록리스트 */
 
@@ -385,7 +385,12 @@ position: relative;
   border-bottom: 1px solid rgb(190, 190, 190);
   padding-bottom: 20px;
 }
-
+.productDetail_img{
+  width: 500px;
+  height: 500px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
 /* 상품 등록/수정 페이지(product) */
 
 .Product_top_title{
@@ -527,7 +532,7 @@ position: relative;
      object-fit: scale-down;
 }
 
-/* 전체 상품 페이지 */
+/* 전체 상품 페이지 (productList)*/
 
 .productlist_btn_box{
   display: flex;
@@ -539,6 +544,10 @@ position: relative;
   padding:10px 20px;
   border:none;
   font-size: 1.3rem;
-  
-  
+}
+.productList_img{
+  width: 300px;
+  height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }

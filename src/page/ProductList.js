@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 
 import { Card, List } from "antd";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import ProductListService from "../service/productListService";
+import LoadingSpinners from "../component/LoadingSpinners";
 const { Meta } = Card;
 export default function ProductList() {
   const [query, setQuery] = useSearchParams();
   const [product, setProduct] = useState([]);
+  const [loading, setLoading] =useState(false)
   const navigate = useNavigate();
   console.log(product);
   const handleOnLoadProduct = async (e) => {
@@ -22,22 +24,24 @@ export default function ProductList() {
     let searchQuery = query.get("q");
     const result = await ProductListService.getProductSearch(searchQuery);
     console.log("result", result.content);
-
+    
     setProduct(result.content);
   };
 
   useEffect(() => {
     handleOnLoadProductSearch();
+    
   }, [query]);
 
   useEffect(() => {
-    // 20230327 jay 로딩시 데이터 늦게 받아오는 문제 해결
-
+    setLoading(true)
     const fetchData = async () => {
+      
       const result = await ProductListService.getProduct();
       // console.log("result", result);
       console.log(result.content);
       setProduct(result.content);
+      setLoading(false)
     };
 
     // call the function
@@ -50,6 +54,11 @@ export default function ProductList() {
       console.log("가 바뀌기 전..");
     };
   }, []);
+  if(loading){
+   return <div>
+    <LoadingSpinners/>
+    </div>
+  }
 
   return (
     <div>
@@ -83,12 +92,12 @@ export default function ProductList() {
                 height: 400,
               }}
               cover={
-                <img height={300} alt="example" src={item?.images[0]?.url} />
+                <img className="productList_img" alt="example" src={item?.images[0]?.url} />
               }
               actions={[]}
             >
               <Meta title={item.title} />
-              <p>성남시 중원구</p>
+              <p>{item.company.address.address}</p>
               <Meta description={item.options} />
             </Card>
           </List.Item>

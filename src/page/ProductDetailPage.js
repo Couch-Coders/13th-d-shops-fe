@@ -4,9 +4,11 @@ import { useParams } from "react-router-dom";
 import { myInfoThunk } from "../stores/myInfoSlice";
 import { Container, Row, Col } from "react-bootstrap";
 import ProductService from "../service/productService";
+import LoadingSpinners from "../component/LoadingSpinners";
 
 export default function Product_Detail() {
   const [product, setProduct] = useState();
+  const [Loading,setLoading] = useState(false)
   const params = useParams();
   const dispatch = useDispatch();
   const my = useSelector((state) => state.myInfo.myInfo);
@@ -18,10 +20,12 @@ export default function Product_Detail() {
   console.log(my);
 
   useEffect(() => {
+    setLoading(true)
     const fetchData = async () => {
       const result = await ProductService.getProduct(params.id);
       console.log("result", result);
       setProduct(result);
+      setLoading(false)
     };
 
     // call the function
@@ -35,6 +39,12 @@ export default function Product_Detail() {
     };
   }, []);
 
+  if(Loading){
+    return <div>
+      <LoadingSpinners/>
+    </div>
+  }
+
   return (
     <div>
       <>
@@ -45,7 +55,7 @@ export default function Product_Detail() {
           <Row>
             <Col lg={5}>
               <div>
-                <img width={500} src={product?.images[0].url}></img>
+                <img className="productDetail_img" src={product?.images[0].url}></img>
               </div>
             </Col>
             <Col lg={7}>

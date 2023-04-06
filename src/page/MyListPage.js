@@ -7,6 +7,7 @@ import MypageProductService from "../service/mypageProductService";
 
 export default function MyListPage() {
   const [product, setProduct] = useState();
+
   const navigate = useNavigate();
 
   const handleDelete = async (seq) => {
@@ -14,15 +15,21 @@ export default function MyListPage() {
     console.log(result);
   };
   useEffect(() => {
+    
     const fetchData = async () => {
       const result = await MypageProductService.getMyProduct();
       setProduct(result.content);
+      
+     
     };
     fetchData()
       // make sure to catch any error
       .catch(console.error);
-  }, [handleDelete]);
+     
+     
+  },[handleDelete]);
 
+  
   return (
     <div>
       <Row className="mypagelist_box">
