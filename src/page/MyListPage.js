@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MyPageNavigate from "../component/MyPageNavigate";
 import MyPageProductCard from "../component/MyPageProductCard";
-import MypageProductService from "../service/mypageProductService";
+import MypageProductService from "../service/MypageProductService";
 
 export default function MyListPage() {
   const [product, setProduct] = useState();

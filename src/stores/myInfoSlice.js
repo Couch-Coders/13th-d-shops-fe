@@ -2,7 +2,7 @@ import { async } from "@firebase/util";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import ErrorService from "../service/errorService";
 import { onGetMyInfo, onUserPut1 } from "../service/authservice";
-import { getProductNear } from "../service/mainPageService";
+import { getProductNear } from "../service/MainPageService";
 
 const initialState = {
   myInfo: null,
@@ -24,29 +24,29 @@ export const myInfoThunk = createAsyncThunk(
 
 export const myInfoUpdateThunk = createAsyncThunk(
   "myInfo/UpdateMyInfo",
-  async(updateinfo,thunkApi)=>{
+  async (updateinfo, thunkApi) => {
     try {
-      return await onUserPut1(updateinfo);  
+      return await onUserPut1(updateinfo);
     } catch (error) {
       const message = ErrorService.axiosErrorHandler(error);
       return thunkApi.rejectWithValue(message);
     }
   }
-)
+);
 
 export const myLocationThunk = createAsyncThunk(
   "myInfo/UpdateMyLocation",
-  async(updateLocation,thunkApi)=>{
-     const {longitude,latitude} = updateLocation
+  async (updateLocation, thunkApi) => {
+    const { longitude, latitude } = updateLocation;
 
-    try{
-      return await getProductNear(longitude,latitude);
+    try {
+      return await getProductNear(longitude, latitude);
     } catch (error) {
       const message = ErrorService.axiosErrorHandler(error);
       return thunkApi.rejectWithValue(message);
     }
-    }
-)
+  }
+);
 
 const myInfoSlice = createSlice({
   name: "myInfo",

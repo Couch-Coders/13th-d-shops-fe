@@ -53,7 +53,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://ugtcndlmbo.us17.qoddiapp.com/",
+  "proxy": "http://ugtcndlmbo.us17.qoddiapp.com",
   "devDependencies": {
     "prettier": "^2.8.7"
   }

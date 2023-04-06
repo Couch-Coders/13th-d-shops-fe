@@ -1,10 +1,10 @@
 import Carousel from "../component/Carousel";
 import React, { useEffect, useState } from "react";
-import MainPageService from "../service/mainPageService";
+import MainPageService from "../service/MainPageService";
 import { Card, List, Descriptions } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import ProductListService from "../service/productListService";
+import ProductListService from "../service/ProductListService";
 import { myInfoThunk, myLocationThunk } from "../stores/myInfoSlice";
 
 const { Meta } = Card;
@@ -12,7 +12,7 @@ const { Meta } = Card;
 export default function MainPage() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.user);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [productNear, setProductNear] = useState([]);
   const [userLocation, setUserLocation] = useState({
     latitude: 33.450701,
@@ -21,9 +21,8 @@ export default function MainPage() {
 
   const [product, setProduct] = useState();
 
-  let my= useSelector((state)=>state.myInfo.myInfo)
-  console.log(my)
-  
+  let my = useSelector((state) => state.myInfo.myInfo);
+  console.log(my);
 
   useEffect(() => {
     // 20230327 jay 현재 위치 받아오기
@@ -78,12 +77,13 @@ export default function MainPage() {
     console.log("user", user);
     // 20230327 jay 로딩시 데이터 늦게 받아오는 문제 해결
     const fetchData = async () => {
+      console.log("near");
       const result = await MainPageService.getProductNear(
         userLocation.longitude,
         userLocation.latitude
       );
       //  dispatch(myLocationThunk(userLocation.longitude,userLocation.latitude))
-        
+
       console.log("result", result);
       setProductNear(result.content);
     };
