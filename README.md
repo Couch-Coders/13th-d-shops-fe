@@ -43,8 +43,7 @@
  
 ## FrontEnd
 
-<img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white"/>
-<img src="https://img.shields.io/badge/ReactRouter-CA4245?style=flat&logo=google&logoColor=white"/>
+<img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white"/><img src="https://img.shields.io/badge/ReactRouter-CA4245?style=flat&logo=google&logoColor=white"/>
 <img src="https://img.shields.io/badge/Redux-764ABC?style=flat&logo=redux&logoColor=white"/>
 <img src="https://img.shields.io/badge/React-toolkit-999999?style=flat&logo=React&logoColor=white"/>
 <img src="https://img.shields.io/badge/AntDesign-0170FE?style=flat&logo=antdesign&logoColor=white"/>
@@ -55,8 +54,7 @@
 
 
  ## BackEnd
-  <img src="https://img.shields.io/badge/Spring-6DB33F?style=flat&logo=spring&logoColor=white"/>
-    <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=flat&logo=springboot&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Spring-6DB33F?style=flat&logo=spring&logoColor=white"/> <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=flat&logo=springboot&logoColor=white"/>
    <img src="https://img.shields.io/badge/java-1E8CBE?style=flat&logo=React&logoColor=white"/> 
    <img src="https://img.shields.io/badge/firebase-FFCA28?style=flat&logo=firebase&logoColor=white"/>
    
