@@ -70,17 +70,18 @@ export default function Product_Detail() {
                     <strong>판매자 정보</strong>{" "}
                   </h6>
                   <div>
-                    <strong>사업장 이름 </strong> : {my && my.company.name}
+                    <strong>사업장 이름 </strong> : {product && product.company.name}
                   </div>
                   <div>
-                    <strong>전화번호 </strong> : {my && my.phone}
+                    <strong>전화번호 </strong> : {product && product.company.phone}
                   </div>
                   <div>
-                    <strong>이메일 </strong> : {my && my.company?.email}
+                    <strong>이메일 </strong> : {product && product.company.email}
                   </div>
                   <div>
                     <strong>사업장 주소 </strong> :{" "}
-                    {my && my.company?.address.address}
+                    {product && product.company.address.address},
+                    {product && product.company.address.detail}
                   </div>
                 </div>
                 <div>

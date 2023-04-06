@@ -12,14 +12,11 @@ const { Meta } = Card;
 export default function MainPage() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.user);
-  const dispatch = useDispatch()
   const [productNear, setProductNear] = useState([]);
   const [userLocation, setUserLocation] = useState({
     latitude: 33.450701,
     longitude: 126.570667,
   });
-
-  const [product, setProduct] = useState();
 
   let my= useSelector((state)=>state.myInfo.myInfo)
   console.log(my)
@@ -99,26 +96,26 @@ export default function MainPage() {
     };
   }, [user]);
 
-  useEffect(() => {
-    // 20230327 jay 로딩시 데이터 늦게 받아오는 문제 해결
+  // useEffect(() => {
+  //   // 20230327 jay 로딩시 데이터 늦게 받아오는 문제 해결
 
-    const fetchData = async () => {
-      const result = await ProductListService.getProduct();
-      // console.log("result", result);
-      console.log(result.content);
-      setProduct(result.content);
-    };
+  //   const fetchData = async () => {
+  //     const result = await ProductListService.getProduct();
+  //     // console.log("result", result);
+  //     console.log(result.content);
+  //     setProductNear(result.content);
+  //   };
 
-    // call the function
-    fetchData()
-      // make sure to catch any error
-      .catch(console.error);
+  //   // call the function
+  //   fetchData()
+  //     // make sure to catch any error
+  //     .catch(console.error);
 
-    console.log("값이 설정됨");
-    return () => {
-      console.log("가 바뀌기 전..");
-    };
-  }, []);
+  //   console.log("값이 설정됨");
+  //   return () => {
+  //     console.log("가 바뀌기 전..");
+  //   };
+  // }, []);
 
   return (
     <div>
@@ -145,7 +142,7 @@ export default function MainPage() {
           xl: 5,
           xxl: 5,
         }}
-        dataSource={product}
+        dataSource={productNear}
         renderItem={(item) => (
           <List.Item
             onClick={() => {
@@ -162,13 +159,13 @@ export default function MainPage() {
                 <img
                   className="main_img"
                   alt="example"
-                  src={`${item?.images[0]?.url}`}
+                  src={`${item?.url}`}
                 />
               }
               actions={[]}
             >
               <Meta title={item.title} />
-              <p>{item.company.address.address}</p>
+              {/* <p>{item.company.address.address}</p> */}
               <Meta description={item.options} />
             </Card>
           </List.Item>
