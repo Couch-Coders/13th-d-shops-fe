@@ -55,7 +55,12 @@
 
  ## BackEnd
   <img src="https://img.shields.io/badge/Spring-6DB33F?style=flat&logo=spring&logoColor=white"/> <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=flat&logo=springboot&logoColor=white"/>
+  <img src="https://img.shields.io/badge/springsecurity-6DB33F?style=flat&logo=springsecurity&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Data JPA-03EF62?style=flat&logo=&logoColor=white"/>
+  <img src="https://img.shields.io/badge/QueryDSL-0078D7?style=flat&logo=&logoColor=white"/>
+  <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=flat&logo=&logoColor=white"/>
    <img src="https://img.shields.io/badge/java-1E8CBE?style=flat&logo=React&logoColor=white"/> 
+   <img src="https://img.shields.io/badge/firebase-FFCA28?style=flat&logo=firebase&logoColor=white"/>
    <img src="https://img.shields.io/badge/firebase-FFCA28?style=flat&logo=firebase&logoColor=white"/>
    
    
