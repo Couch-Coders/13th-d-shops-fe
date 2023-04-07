@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import LoadingSpinners from "../component/LoadingSpinners";
 
 const { Meta } = Card;
-
+const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
 export default function MainPage() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.user);
@@ -169,7 +169,7 @@ export default function MainPage() {
                 <img
                   className="main_img"
                   alt="example"
-                  src={`${item?.url}`}
+                  src={`${PROXY}${item?.url}`}
                 />
               }
               actions={[]}
