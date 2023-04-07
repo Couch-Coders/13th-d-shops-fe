@@ -70,7 +70,7 @@
   <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=flat&logo=&logoColor=white"/>
    <img src="https://img.shields.io/badge/java-1E8CBE?style=flat&logo=React&logoColor=white"/> 
    <img src="https://img.shields.io/badge/firebase-FFCA28?style=flat&logo=firebase&logoColor=white"/>
-   <img src="https://img.shields.io/badge/firebase-FFCA28?style=flat&logo=firebase&logoColor=white"/>
+ <img src="https://img.shields.io/badge/oathu-4285F4?style=flat&logo=google&logoColor=white"/>
    
    
  ## Infra
