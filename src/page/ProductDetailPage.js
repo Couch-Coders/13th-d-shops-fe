@@ -56,7 +56,7 @@ export default function Product_Detail() {
           <Row>
             <Col lg={5}>
               <div>
-                <img className="productDetail_img" src={`${PROXY + product?.images[0].url}`}></img>
+                <img className="productDetail_img" src={`${PROXY} ${product?.images[0].url}`}></img>
              
               </div>
             </Col>
