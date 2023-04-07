@@ -1,5 +1,5 @@
 [[redirects]]
 from = "/proxy/*"
-  to = "http://ugtcndlmbo.us17.qoddiapp.com:splat"  
+  to = "http://ugtcndlmbo.us17.qoddiapp.com/:splat"  
   status = 200
   force = true
