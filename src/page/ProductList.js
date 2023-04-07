@@ -93,7 +93,7 @@ export default function ProductList() {
                 height: 400,
               }}
               cover={
-                <img className="productList_img" alt="example" src={`${PROXY}${item?.images[0]?.url}`} />
+                <img className="productList_img" alt="example" src={`http://ugtcndlmbo.us17.qoddiapp.com${item?.images[0]?.url}`} />
               }
               actions={[]}
             >
