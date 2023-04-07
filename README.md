@@ -9,7 +9,7 @@
 
 # 프로젝트 소개
  40,50대 오프라인 매장을 운영하는 사장님들이 온라인 마켓을 어렵지 않게 접근할 수 있도록 만든
- 위치 기반 온라인 마켓
+ 위치 기반 
  
  
  
@@ -70,7 +70,7 @@
   <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=flat&logo=&logoColor=white"/>
    <img src="https://img.shields.io/badge/java-1E8CBE?style=flat&logo=React&logoColor=white"/> 
    <img src="https://img.shields.io/badge/firebase-FFCA28?style=flat&logo=firebase&logoColor=white"/>
-   <img src="https://img.shields.io/badge/firebase-FFCA28?style=flat&logo=firebase&logoColor=white"/>
+ <img src="https://img.shields.io/badge/oathu-4285F4?style=flat&logo=google&logoColor=white"/>
    
    
  ## Infra
