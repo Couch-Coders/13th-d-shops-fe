@@ -26,6 +26,7 @@ export default function Product_Detail() {
       console.log("result", result);
       setProduct(result);
       setLoading(false)
+    
     };
 
     // call the function
@@ -55,7 +56,8 @@ export default function Product_Detail() {
           <Row>
             <Col lg={5}>
               <div>
-                <img className="productDetail_img" src={`${PROXY} ${product?.images[0].url}`}></img>
+                <img className="productDetail_img" src={`${PROXY + product?.images[0].url}`}></img>
+             
               </div>
             </Col>
             <Col lg={7}>

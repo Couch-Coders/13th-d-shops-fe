@@ -5,6 +5,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import ProductListService from "../service/productListService";
 import LoadingSpinners from "../component/LoadingSpinners";
 const { Meta } = Card;
+const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
 export default function ProductList() {
   const [query, setQuery] = useSearchParams();
   const [product, setProduct] = useState([]);
@@ -92,7 +93,7 @@ export default function ProductList() {
                 height: 400,
               }}
               cover={
-                <img className="productList_img" alt="example" src={item?.images[0]?.url} />
+                <img className="productList_img" alt="example" src={`${PROXY}${item?.images[0]?.url}`} />
               }
               actions={[]}
             >
