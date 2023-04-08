@@ -6,6 +6,9 @@
 ![메인화면](https://user-images.githubusercontent.com/108445626/230342897-73eb5bd7-1410-4110-ba23-819d4861169a.png)
 
 
+# 도메인주소 
+[우리동네d-shops](https://d-shops.netlify.app/)
+
 
 # 프로젝트 소개
  40,50대 오프라인 매장을 운영하는 사장님들이 온라인 마켓을 어렵지 않게 접근할 수 있도록 만든
