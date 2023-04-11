@@ -16,7 +16,7 @@ export default function ProductList() {
     e.preventDefault();
 
     const result = await ProductListService.getProduct();
-    // console.log("result", result.content);
+    console.log("result", result.content);
 
     setProduct(result.content);
   };

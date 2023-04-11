@@ -11,7 +11,7 @@ const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
 const Product = () => {
   const { id } = useParams();
   const [product, setProduct] = useState({});
-  const [file, setFile] = useState();
+  const [imageFile, setImageFile] = useState();
   const [imageSrc, setImageSrc] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate()
@@ -23,28 +23,29 @@ const Product = () => {
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (name === "file") {
-      setFile(files && files[0]);
+      setImageFile(files && files[0]);
       return;
     }
     setProduct((product) => ({ ...product, [name]: value }));
   };
-
   const handleSubmitPost = async (e) => {
     e.preventDefault();
     console.log(product);
     const result = await ProductService.postProduct(product, my);
+    onfileupload(result.seq)
+
     console.log("result", result);
     setProduct(result);
     console.log(result);
-    alert("상품이 저장되었습니다. 이미지를 등록해 주세요");
   };
-  const onfileupload = async (event) => {
+
+  const onfileupload = async (seq) => {
     const formData = new FormData();
-    formData.append("files", event.target.files[0]);
+    formData.append("files", imageFile);
     try {
       axios.defaults.baseURL = "";
       const response = await axios.post(
-        `${PROXY}/users/me/products/${product.seq}/images`,
+        `${PROXY}/users/me/products/${seq}/images`,
         formData,
         {
           headers: {
@@ -62,7 +63,7 @@ const Product = () => {
     } catch (e) {
       console.log(e);
     }
-    const file = event.target.files[0];
+    const file = imageFile;
     const reader = new FileReader();
     reader.readAsDataURL(file);
 
@@ -73,7 +74,6 @@ const Product = () => {
       };
     });
   };
-
   const handleSubmitPut = async (e) => {
     e.preventDefault();
 
@@ -170,21 +170,8 @@ const Product = () => {
               ></input>
             </div>
           </div>
-          <div className="product_btns">
-            <button className="productbtn" onClick={handleSubmitPost}>
-              저장
-            </button>
-            <button className="productbtn" onClick={handleSubmitPut}>
-              수정
-            </button>
-            <button className="productbtn" onClick={handleSubmitDelete}>
-              삭제
-            </button>
-          </div>
           <div className="image_wrap">
-            <p>
-              <strong>상품 저장 후 이미지를 등록해 주세요 😀</strong>
-            </p>
+            
             {imageSrc ? <div>
               <img className="upload_img" src={imageSrc} />
             </div>  : <div> <img width={300} src='/image/img.png'></img></div>}
@@ -192,18 +179,33 @@ const Product = () => {
             <label for="upload-file" className="product_img_btn">
               이미지 등록하기{" "}
             </label>
+            
             <div>
               <input
                 type="file"
+                name='file'
                 id="upload-file"
                 accept="image/*"
-                onChange={onfileupload}
+                onChange={handleChange}
                 style={{ visibility: "hidden" }}
               />
             </div>
           </div>
+          <div className="product_btns">
+          <button className="productbtn" onClick={handleSubmitPost}>
+              저장
+            </button> 
+             <button className="productbtn" onClick={handleSubmitPut}>
+              수정
+            </button>  
+  
+            <button className="productbtn" onClick={handleSubmitDelete}>
+              삭제
+            </button>
+          </div>
+         
           <div>
-             
+          <label onClick={()=>navigate(`/products/${product.seq}`)}> 등록한 상품 보러가기 </label>
           </div>
         </div>
       </form>
