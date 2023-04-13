@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import MypageProductService from "../service/mypageProductService";
+const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
 export default function MyPageProductCard({ item }) {
   const handleDelete = async (seq) => {
     const result = await MypageProductService.deleteProduct(seq);
@@ -13,7 +14,7 @@ export default function MyPageProductCard({ item }) {
     <>
       <div>
         <div className="myproductlist_productbox">
-          <img className="my_img" src={item?.images[0]?.url}></img>
+          <img className="my_img" src={`${PROXY}${item?.images[0]?.url}`}></img>
 
           <div className="myproductlist_text">
             <h3>{item?.title}</h3>

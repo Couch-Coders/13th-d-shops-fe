@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import LoadingSpinners from "../component/LoadingSpinners";
 
 const { Meta } = Card;
-
+const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
 export default function MainPage() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.user);
@@ -27,7 +27,7 @@ export default function MainPage() {
     setLoading(true)
     const script = document.createElement("script");
     script.src =
-      "//dapi.kakao.com/v2/maps/sdk.js?appkey=d25f19cf0a1860dd105275f8a970b86d&libraries=services";
+      "//dapi.kakao.com/v2/maps/sdk.js?appkey=a82d5a4bcbe4e5fdbf1db07d17b4673a&libraries=services";
     script.async = true;
     document.head.appendChild(script);
 
@@ -169,7 +169,7 @@ export default function MainPage() {
                 <img
                   className="main_img"
                   alt="example"
-                  src={`${item?.url}`}
+                  src={`${PROXY}${item?.url}`}
                 />
               }
               actions={[]}

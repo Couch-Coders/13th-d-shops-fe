@@ -518,6 +518,7 @@ position: relative;
   margin:auto;
   padding:20px;
   height: 500px;
+  margin-top:20px;
 }
 .product_img_btn{
   border:1px solid gray;
@@ -530,6 +531,12 @@ position: relative;
   height: 300px;
   -o-object-fit: scale-down;
      object-fit: scale-down;
+}
+
+.goproduct{
+
+  border:1px solid violet;
+  padding:10px;
 }
 
 /* 전체 상품 페이지 (productList)*/

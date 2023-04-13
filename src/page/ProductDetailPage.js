@@ -5,7 +5,7 @@ import { myInfoThunk } from "../stores/myInfoSlice";
 import { Container, Row, Col } from "react-bootstrap";
 import ProductService from "../service/productService";
 import LoadingSpinners from "../component/LoadingSpinners";
-
+const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
 export default function Product_Detail() {
   const [product, setProduct] = useState();
   const [Loading,setLoading] = useState(false)
@@ -26,6 +26,7 @@ export default function Product_Detail() {
       console.log("result", result);
       setProduct(result);
       setLoading(false)
+    
     };
 
     // call the function
@@ -55,7 +56,8 @@ export default function Product_Detail() {
           <Row>
             <Col lg={5}>
               <div>
-                <img className="productDetail_img" src={product?.images[0].url}></img>
+                <img className="productDetail_img" src={`${PROXY}${product?.images[0]?.url}`}></img>
+             
               </div>
             </Col>
             <Col lg={7}>
