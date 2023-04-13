@@ -10,51 +10,62 @@ export default function ProductList() {
   const [query, setQuery] = useSearchParams();
   const [product, setProduct] = useState([]);
   const [loading, setLoading] =useState(false)
+  const [queryValue,serQueryValue] = useState()
   const navigate = useNavigate();
   console.log(product);
   const handleOnLoadProduct = async (e) => {
-    e.preventDefault();
-
+    
+    setLoading(true)
     const result = await ProductListService.getProduct();
     console.log("result", result.content);
 
     setProduct(result.content);
+    setLoading(false)
   };
 
   const handleOnLoadProductSearch = async (e) => {
     let searchQuery = query.get("q");
+    setLoading(true)
+    serQueryValue(searchQuery)
     const result = await ProductListService.getProductSearch(searchQuery);
     console.log("result", result.content);
     
     setProduct(result.content);
+    setLoading(false)
   };
 
   
-  useEffect(() => {
-    setLoading(true)
-    const fetchData = async () => {
+ 
+    // const fetchData = async () => {
       
-      const result = await ProductListService.getProduct();
-      // console.log("result", result);
-      console.log(result.content);
-      setProduct(result.content);
-      setLoading(false)
-    };
+    //   const result = await ProductListService.getProduct();
+    //   // console.log("result", result);
+    //   console.log(result.content);
+    //   setProduct(result.content);
+      
+    // };
 
-    // call the function
-    fetchData()
-      // make sure to catch any error
-      .catch(console.error);
+  //   // call the function
+  //   fetchData()
+  //     // make sure to catch any error
+  //     .catch(console.error);
 
-    console.log("값이 설정됨");
-    return () => {
-      console.log("가 바뀌기 전..");
-    };
-  }, []);
+  //   console.log("값이 설정됨");
+  //   return () => {
+  //     console.log("가 바뀌기 전..");
+  //   };
+  // }
 
   useEffect(() => {
-    handleOnLoadProductSearch();
     
+    let searchQuery = query.get("q");
+      if(searchQuery){  
+        handleOnLoadProductSearch();
+      }else{
+        handleOnLoadProduct()      
+      }
+      
+      setLoading(false)
   }, [query]);
 
   if(loading){
