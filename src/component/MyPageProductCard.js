@@ -1,13 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import MypageProductService from "../service/mypageProductService";
-const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
 export default function MyPageProductCard({ item }) {
   const handleDelete = async (seq) => {
     const result = await MypageProductService.deleteProduct(seq);
     console.log(result.con);
 
     alert("삭제 되었습니다.");
+    // 다시 불러오기
   };
 
   return (
