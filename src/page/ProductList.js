@@ -29,11 +29,7 @@ export default function ProductList() {
     setProduct(result.content);
   };
 
-  useEffect(() => {
-    handleOnLoadProductSearch();
-    
-  }, [query]);
-
+  
   useEffect(() => {
     setLoading(true)
     const fetchData = async () => {
@@ -55,6 +51,12 @@ export default function ProductList() {
       console.log("가 바뀌기 전..");
     };
   }, []);
+
+  useEffect(() => {
+    handleOnLoadProductSearch();
+    
+  }, [query]);
+
   if(loading){
    return <div>
     <LoadingSpinners/>

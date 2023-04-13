@@ -1,4 +1,3 @@
-// 20230326 by jay 전체 상품 목록 서비스
 import axios from "axios";
 const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
 

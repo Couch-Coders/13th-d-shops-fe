@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { SearchOutlined } from "@ant-design/icons";
 import Navbar from "./Navbar";
@@ -24,10 +24,12 @@ export default function Header() {
     if (e.key === "Enter") {
       let keyword = e.target.value;
       console.log(keyword);
-
+      
       navigate(`/products/?q=${keyword}`);
     }
   };
+
+
   return (
     <div className="header">
       <Link to="/">

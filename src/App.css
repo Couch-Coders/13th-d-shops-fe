@@ -533,6 +533,12 @@ position: relative;
      object-fit: scale-down;
 }
 
+.goproduct{
+
+  border:1px solid violet;
+  padding:10px;
+}
+
 /* 전체 상품 페이지 (productList)*/
 
 .productlist_btn_box{

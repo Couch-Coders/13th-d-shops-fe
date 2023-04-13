@@ -6,6 +6,7 @@ import ProductService from "../service/productService";
 
 import { myInfoThunk } from "../stores/myInfoSlice";
 import axios from "axios";
+import productSlice, { productThunk, productUpdateThunk } from "../stores/productSlice";
 
 const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
 const Product = () => {
@@ -15,7 +16,7 @@ const Product = () => {
   const [imageSrc, setImageSrc] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate()
-  const my = useSelector((state) => state.myInfo.myInfo);
+
   useEffect(() => {
     dispatch(myInfoThunk());
   }, []);
@@ -27,20 +28,43 @@ const Product = () => {
       return;
     }
     setProduct((product) => ({ ...product, [name]: value }));
+    console.log(product)
   };
+
+
   const handleSubmitPost = async (e) => {
     e.preventDefault();
-    console.log(product);
-    const result = await ProductService.postProduct(product, my);
-    onfileupload(result.seq)
-
-    console.log("result", result);
+    console.log(product)
+    // console.log(product);
+    const result = await ProductService.postProduct(product);
+     onfileupload(result.seq)
+     console.log(result)
+    // console.log("result", result);
     setProduct(result);
-    console.log(result);
+    // console.log(result);
+
+  
+  };
+  const handleSubmitPut = async (e) => {
+    e.preventDefault();
+
+    
+    const result = await ProductService.putProduct(product);
+    console.log("result", result);
+    onfileupload(result?.seq,result?.images[0]?.seq)
+    alert(" 수정 되었습니다.");
   };
 
-  const onfileupload = async (seq) => {
-    const formData = new FormData();
+
+
+  const onfileupload = async (seq,imageseq) => {
+    console.log(seq)
+    if(imageseq){
+      const response1 = await axios.delete(`${PROXY}/users/me/products/${seq}/images/${imageseq}`)
+    console.log(response1)
+    alert("이미지가 삭제 되었습니다 다시 이미지를 등록해 주세요")
+    }else{
+      const formData = new FormData();
     formData.append("files", imageFile);
     try {
       axios.defaults.baseURL = "";
@@ -73,13 +97,10 @@ const Product = () => {
         resolve();
       };
     });
-  };
-  const handleSubmitPut = async (e) => {
-    e.preventDefault();
+    }
+    
 
-    const result = await ProductService.putProduct(product);
-    console.log("result", result);
-    alert(" 수정 되었습니다.");
+    
   };
 
   const handleSubmitDelete = async (e) => {
@@ -102,6 +123,7 @@ const Product = () => {
       const result = await ProductService.getProduct(id);
       console.log("result", result);
       setProduct(result);
+ 
       // console.log("product.title", product.title);
     };
     // call the function
@@ -192,12 +214,13 @@ const Product = () => {
             </div>
           </div>
           <div className="product_btns">
-          <button className="productbtn" onClick={handleSubmitPost}>
-              저장
-            </button> 
-             <button className="productbtn" onClick={handleSubmitPut}>
+            {product.seq ?  <button className="productbtn" onClick={handleSubmitPut}>
               수정
-            </button>  
+            </button>  : <button className="productbtn" onClick={handleSubmitPost}>
+              저장
+            </button> }
+          
+             
   
             <button className="productbtn" onClick={handleSubmitDelete}>
               삭제
@@ -205,7 +228,7 @@ const Product = () => {
           </div>
          
           <div>
-          <label onClick={()=>navigate(`/products/${product.seq}`)}> 등록한 상품 보러가기 </label>
+          <label className="goproduct" onClick={()=>navigate(`/products/${product?.seq}`)}> 등록한 상품 보러가기 </label>
           </div>
         </div>
       </form>

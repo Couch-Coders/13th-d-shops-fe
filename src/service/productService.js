@@ -9,28 +9,29 @@ export const onGetMyProduct = async () => {
 
 
 // 20230326 jay 품목 등록
-export const postProduct = async (product,my) => {
+export const postProduct = async (product) => {
+  console.log(product)
   const responsePost = await axios.post(
     `${PROXY}/users/me/products`, 
     {
     "title": product.title,
-    "options": product.options,
-    "description": product.description,
-    "company": {
-      "name": my.company.name,
-      "email": my.company.email,
-      "phone": my.company.phone,
-      "address": {
-          "name":null ,
-          "post_code":my.company.address.post_code,
-          "address":my.company.address.address,
-          "extra":my.company.address.extra,
-          "detail":my.company.address.detail,
-          "location_x":my.company.address.location_x,
-          "location_y":my.company.address.location_y,
-      },
-    }
-  
+    "options":  product.options,
+    "description":  product.description,
+    // "images":product.imageFiles
+    // "company": {
+    //   "name": my.company.name,
+    //   "email": my.company.email,
+    //   "phone": my.company.phone,
+    //   "address": {
+    //       "name":null ,
+    //       "post_code":my.company.address.post_code,
+    //       "address":my.company.address.address,
+    //       "extra":my.company.address.extra,
+    //       "detail":my.company.address.detail,
+    //       "location_x":my.company.address.location_x,
+    //       "location_y":my.company.address.location_y,
+    //   },
+    // }
 //  },
     
   },
@@ -38,9 +39,7 @@ export const postProduct = async (product,my) => {
     withCredentials: true,
   },
   );
-  
 
-  
 return responsePost.data
   // return responsePost.data;
  
@@ -81,12 +80,16 @@ const putProduct = async (product) => {
   return response.data;
 };
 
+
+
 // 20230326 jay 품목 삭제
 const deleteProduct = async (seq) => {
   const response = await axios.delete(`${PROXY}/users/me/products/` + seq);
   // console.log(response.data);
   return response.data;
 };
+
+
 
 
 const ProductService = {onGetMyProduct, postProduct, getProduct, putProduct, deleteProduct};
