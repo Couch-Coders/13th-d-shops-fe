@@ -6,8 +6,6 @@ import myInfoReducer from "./myInfoSlice";
 const rootReducer = combineReducers({
   user: userReducer,
   myInfo: myInfoReducer,
- 
-
 });
 
 const store = configureStore({
