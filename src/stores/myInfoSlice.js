@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import ErrorService from "../service/errorService";
 import { onGetMyInfo, onUserPut1 } from "../service/authservice";
 
-
 const initialState = {
   myInfo: null,
   loading: false,
@@ -23,16 +22,15 @@ export const myInfoThunk = createAsyncThunk(
 
 export const myInfoUpdateThunk = createAsyncThunk(
   "myInfo/UpdateMyInfo",
-  async(updateinfo,thunkApi)=>{
+  async (updateinfo, thunkApi) => {
     try {
-      return await onUserPut1(updateinfo);  
+      return await onUserPut1(updateinfo);
     } catch (error) {
       const message = ErrorService.axiosErrorHandler(error);
       return thunkApi.rejectWithValue(message);
     }
   }
-)
-
+);
 
 const myInfoSlice = createSlice({
   name: "myInfo",
@@ -60,7 +58,6 @@ const myInfoSlice = createSlice({
       state.loading = false;
       state.error = action.error.message ?? "";
     });
-   
   },
 });
 export default myInfoSlice.reducer;

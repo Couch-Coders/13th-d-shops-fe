@@ -1,9 +1,11 @@
 import axios from "axios";
-const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
 
 // 20230326 by jay 전체 상품 목록 가져오기
 const getProduct = async () => {
-  const response = await axios.get(`${PROXY}/products?page=0&size=100&order=seq desc`);
+  const response = await axios.get(
+    `${PROXY}/products?page=0&size=100&order=seq desc`
+  );
   return response.data;
 };
 

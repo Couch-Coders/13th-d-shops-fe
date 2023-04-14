@@ -10,26 +10,21 @@ export default function MyListPage() {
 
   const navigate = useNavigate();
 
-  const handleDelete = async (seq) => {
-    const result = await MypageProductService.deleteProduct(seq);
-    console.log(result);
+  // const handleDelete = async (seq) => {
+  //   const result = await MypageProductService.deleteProduct(seq);
+  //   console.log(result);
+  // };
+  const fetchData = async () => {
+    const result = await MypageProductService.getMyProduct();
+    setProduct(result.content);
+    console.log("fetchData", result);
   };
   useEffect(() => {
-    
-    const fetchData = async () => {
-      const result = await MypageProductService.getMyProduct();
-      setProduct(result.content);
-      
-     
-    };
     fetchData()
       // make sure to catch any error
       .catch(console.error);
-     
-     
-  },[handleDelete]);
+  }, []);
 
-  
   return (
     <div>
       <Row className="mypagelist_box">

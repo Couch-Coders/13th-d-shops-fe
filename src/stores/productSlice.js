@@ -11,7 +11,6 @@ const initialState = {
 export const productUpdateThunk = createAsyncThunk(
   "product/UpdateProduct",
   async (updateproduct, thunkApi) => {
-
     try {
       return await postProduct(updateproduct);
     } catch (error) {
@@ -36,10 +35,7 @@ const productSlice = createSlice({
       state.loading = false;
       state.error = action.error.message ?? "";
     });
-    
-   
   },
 });
 
-
-export default productSlice.reducer
+export default productSlice.reducer;

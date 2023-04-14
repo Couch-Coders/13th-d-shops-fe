@@ -1,9 +1,9 @@
 import "./App.css";
-import React, { useEffect,  } from "react";
+import React, { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
-import { useDispatch, } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getUserThunk, logOutUserThunk } from "./stores/auth/authSlice";
-import { auth,  } from "./service/firebaseAuth";
+import { auth } from "./service/firebaseAuth";
 import Header from "./component/Header";
 import { Routes, Route } from "react-router-dom";
 import MainPage from "./page/MainPage";
@@ -12,7 +12,6 @@ import ProductDetailPage from "./page/ProductDetailPage";
 import MyPage from "./page/MyPage";
 import Product from "./page/Product";
 import MyListPage from "./page/MyListPage";
-
 
 function App() {
   const dispatch = useDispatch();
@@ -23,26 +22,24 @@ function App() {
 
         console.log(token);
         dispatch(getUserThunk(token));
-      }else if(!user){
-        dispatch(logOutUserThunk())
+      } else if (!user) {
+        dispatch(logOutUserThunk());
       }
-      
     });
     return unsubscribe;
   }, [dispatch]);
   return (
     <div className="App">
-        <Header />
-        <Routes>
-          <Route path="/" element={<MainPage />}></Route>
-          <Route path="/products" element={<ProductList />}></Route>
-          <Route path="/products/:id" element={<ProductDetailPage />}></Route>
-          <Route path="/mypage" element={<MyPage />}></Route>
-          <Route path="/product" element={<Product/>}></Route>
-          <Route path="/product/:id" element={<Product/>}></Route>
-          <Route path="/mylist" element={<MyListPage/>}></Route>
-        
-        </Routes>
+      <Header />
+      <Routes>
+        <Route path="/" element={<MainPage />}></Route>
+        <Route path="/products" element={<ProductList />}></Route>
+        <Route path="/products/:id" element={<ProductDetailPage />}></Route>
+        <Route path="/mypage" element={<MyPage />}></Route>
+        <Route path="/product" element={<Product />}></Route>
+        <Route path="/product/:id" element={<Product />}></Route>
+        <Route path="/mylist" element={<MyListPage />}></Route>
+      </Routes>
     </div>
   );
 }

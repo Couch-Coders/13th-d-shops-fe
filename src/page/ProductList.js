@@ -5,45 +5,42 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import ProductListService from "../service/productListService";
 import LoadingSpinners from "../component/LoadingSpinners";
 const { Meta } = Card;
-const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
 export default function ProductList() {
   const [query, setQuery] = useSearchParams();
   const [product, setProduct] = useState([]);
-  const [loading, setLoading] =useState(false)
-  const [queryValue,serQueryValue] = useState()
+  const [loading, setLoading] = useState(false);
+  const [queryValue, serQueryValue] = useState();
   const navigate = useNavigate();
   console.log(product);
   const handleOnLoadProduct = async (e) => {
-    
-    setLoading(true)
+    setLoading(true);
     const result = await ProductListService.getProduct();
     console.log("result", result.content);
 
     setProduct(result.content);
-    setLoading(false)
+    setLoading(false);
   };
 
   const handleOnLoadProductSearch = async (e) => {
     let searchQuery = query.get("q");
-    setLoading(true)
-    serQueryValue(searchQuery)
+    setLoading(true);
+    serQueryValue(searchQuery);
     const result = await ProductListService.getProductSearch(searchQuery);
     console.log("result", result.content);
-    
+
     setProduct(result.content);
-    setLoading(false)
+    setLoading(false);
   };
 
-  
- 
-    // const fetchData = async () => {
-      
-    //   const result = await ProductListService.getProduct();
-    //   // console.log("result", result);
-    //   console.log(result.content);
-    //   setProduct(result.content);
-      
-    // };
+  // const fetchData = async () => {
+
+  //   const result = await ProductListService.getProduct();
+  //   // console.log("result", result);
+  //   console.log(result.content);
+  //   setProduct(result.content);
+
+  // };
 
   //   // call the function
   //   fetchData()
@@ -57,21 +54,22 @@ export default function ProductList() {
   // }
 
   useEffect(() => {
-    
     let searchQuery = query.get("q");
-      if(searchQuery){  
-        handleOnLoadProductSearch();
-      }else{
-        handleOnLoadProduct()      
-      }
-      
-      setLoading(false)
+    if (searchQuery) {
+      handleOnLoadProductSearch();
+    } else {
+      handleOnLoadProduct();
+    }
+
+    setLoading(false);
   }, [query]);
 
-  if(loading){
-   return <div>
-    <LoadingSpinners/>
-    </div>
+  if (loading) {
+    return (
+      <div>
+        <LoadingSpinners />
+      </div>
+    );
   }
 
   return (
@@ -106,7 +104,11 @@ export default function ProductList() {
                 height: 400,
               }}
               cover={
-                <img className="productList_img" alt="example" src={`${PROXY}${item?.images[0]?.url}`} />
+                <img
+                  className="productList_img"
+                  alt="example"
+                  src={`${PROXY}${item?.images[0]?.url}`}
+                />
               }
               actions={[]}
             >

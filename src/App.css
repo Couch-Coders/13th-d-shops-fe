@@ -5,13 +5,12 @@
   font-weight: normal;
   font-style: normal;
 }
-*{
+* {
   font-family: "SUIT-Regular";
 }
-body{
-  background-color:  #F1F1F5 !important;
+body {
+  background-color: #f1f1f5 !important;
 }
-
 
 .header {
   display: flex;
@@ -101,159 +100,150 @@ body{
   -o-object-fit: cover;
   object-fit: cover;
 }
-.main_cardlist{
- margin-left:40px;
- margin-top:20px;
+.main_cardlist {
+  margin-left: 40px;
+  margin-top: 20px;
 }
-.main_products_title{
-  margin-left:3%;
-  margin-top:4%;
-  
+.main_products_title {
+  margin-left: 3%;
+  margin-top: 4%;
 }
-.mainitembox{
+.mainitembox {
   width: 200px;
 }
 
 /* 마이페이지 (MyPage)*/
 
-
-.tables{
+.tables {
   width: 80% !important;
   background-color: rgb(255, 255, 255);
- 
 }
-.tables_wrap{
+.tables_wrap {
   width: 100%;
   border: 1px solid red;
 }
-.mapage_address_wrap{
+.mapage_address_wrap {
   display: flex;
   height: 40px;
   align-items: center;
 }
-.mypage_myinfo_title{
-  padding:10px;
-  margin-top:10%;
+.mypage_myinfo_title {
+  padding: 10px;
+  margin-top: 10%;
 }
-.mypage_company_title{
-  padding:10px 0;
+.mypage_company_title {
+  padding: 10px 0;
 }
-.mypage_input{
-  margin-left:20px;
-  border:none;
-  border:1px solid rgb(200, 200, 200);
+.mypage_input {
+  margin-left: 20px;
+  border: none;
+  border: 1px solid rgb(200, 200, 200);
   border-radius: 10px;
   text-align: center;
-  color:navy;
+  color: navy;
   height: 30px;
 }
-.mypage_address_input{
+.mypage_address_input {
   height: 30px;
-  border:none;
+  border: none;
   border-radius: 10px;
   text-align: center;
   margin-right: 20px;
-  border:1px solid rgb(200, 200, 200);
-  color:navy;
+  border: 1px solid rgb(200, 200, 200);
+  color: navy;
 }
 
-.MyPage_Location_btn{
+.MyPage_Location_btn {
   background-color: transparent;
   border: none;
-  color:gray;
+  color: gray;
   font-size: 1.5rem;
 }
 
-.myPage_SearchBox{
+.myPage_SearchBox {
   display: flex;
   position: relative;
   width: 100%;
-
 }
 
-
-.padding{
+.padding {
   width: 300px;
   height: 100vh;
-  background-color: #EAEAEA;
-  
+  background-color: #eaeaea;
 }
-.mypage_edit{
+.mypage_edit {
   display: flex;
 }
-.mypage_edit_btn{
+.mypage_edit_btn {
   width: 400px;
   background-color: #395e97 !important;
   height: 50px;
-  color:white;
-  margin-top:20px;
+  color: white;
+  margin-top: 20px;
   border: none;
   float: right;
   margin-right: 50%;
   font-size: 1.5rem;
 }
-.mypage_navigate_header{
+.mypage_navigate_header {
   width: 100%;
   height: 200px;
-  background-color:#395E97;
+  background-color: #395e97;
   text-align: center;
-  color:white;
-  padding:25% 0;
+  color: white;
+  padding: 25% 0;
 }
 
-.mypage_navigate{
-  margin:20px 0;
+.mypage_navigate {
+  margin: 20px 0;
   text-align: center;
-  font-size: 1.4rem; 
-  
+  font-size: 1.4rem;
 }
-.mypage_text-wrap{
+.mypage_text-wrap {
   margin-left: 100px;
   text-align: center;
 }
-.mypage_text{
+.mypage_text {
   color: black;
   text-decoration: none;
 }
 
-.mypage_mylist_btn{
-  border:none;
+.mypage_mylist_btn {
+  border: none;
   background-color: transparent;
   color: black;
   text-decoration: none;
 }
 
-.mypage_text_box{
+.mypage_text_box {
   margin-bottom: 20px;
 }
-.mypage_navigate_title{
-  padding:30px;
-  
+.mypage_navigate_title {
+  padding: 30px;
 }
 /* 내상품 목록리스트 */
 
-.myproductlist_header_box{
+.myproductlist_header_box {
   display: flex;
   justify-content: space-between;
   margin-left: 15%;
-  margin-top:12%;
+  margin-top: 12%;
   width: 1300px;
 }
 
-.myproductlist_header_btn{
-  background-color: #395E97;
+.myproductlist_header_btn {
+  background-color: #395e97;
   color: white;
   width: 100px;
   height: 40px;
   border-radius: 10px;
   border: none;
-  
 }
-.mypagelist_box{
-box-sizing: border-box;
+.mypagelist_box {
+  box-sizing: border-box;
 }
 
-.myproductlist_product_wrap{
+.myproductlist_product_wrap {
   border: 1px solid rgb(212, 212, 212);
   background-color: white;
   margin-left: 15%;
@@ -262,299 +252,277 @@ box-sizing: border-box;
   height: 600px;
 }
 
-.myproductlist_productbox{
-background-color: rgb(255, 255, 255);
-padding:50px;
-position: relative;
-
+.myproductlist_productbox {
+  background-color: rgb(255, 255, 255);
+  padding: 50px;
+  position: relative;
 }
-.myproductlist_boxs{
+.myproductlist_boxs {
   width: 100%;
   border: 1px solid black;
-
 }
 
-
-.myproductlist_productbox{
-
+.myproductlist_productbox {
   width: 95%;
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  margin:20px;
+  margin: 20px;
   border: 1px dotted rgb(196, 196, 196);
 }
-.myproductlist_img{
+.myproductlist_img {
   float: left;
-  
-
 }
-.myproductlist_text{
+.myproductlist_text {
   position: absolute;
-  left:30%;
-  top:20%;
-
+  left: 30%;
+  top: 20%;
 }
-.myprocutlist_options{
-  color:rgb(255, 111, 0);
+.myprocutlist_options {
+  color: rgb(255, 111, 0);
   font-size: 1.2rem;
 }
-.mypageproductlist_product_btn{
+.mypageproductlist_product_btn {
   position: absolute;
-  bottom:5%;
+  bottom: 5%;
   right: 1%;
- 
 }
 
-.mypageproductlist_product{
+.mypageproductlist_product {
   background-color: #ffffff;
-  color:rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
   text-decoration: none;
-  padding:10px 30px;
+  padding: 10px 30px;
   margin-right: 20px;
   border-radius: 20px;
   border: 1px dotted gray;
 }
 
-.mypageproductlist_delet{
+.mypageproductlist_delet {
   background-color: #ffffff;
-  color:rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
   text-decoration: none;
-  padding:8px 30px;
+  padding: 8px 30px;
   margin-right: 20px;
   border-radius: 20px;
   border: 1px dotted gray;
 }
 
-.my_img{
+.my_img {
   width: 300px;
   height: 200px;
   -o-object-fit: cover;
-     object-fit: cover;
-
+  object-fit: cover;
 }
 /* 디테일 페이지(ProductDetail) */
 
-.product_wrap{
-  padding:30px 0;
+.product_wrap {
+  padding: 30px 0;
   background-color: white;
-
 }
-.detail_title{
-  padding:20px 0;
-  margin-left:15%;
+.detail_title {
+  padding: 20px 0;
+  margin-left: 15%;
   font-size: 2rem;
 }
-.product_title{
+.product_title {
   border-bottom: 1px solid gray;
-  margin:10px 0;
+  margin: 10px 0;
 }
-.company_info{
+.company_info {
   width: 100%;
-  padding:30px 5px;
-  border : 1px dotted rgb(209, 209, 209);
+  padding: 30px 5px;
+  border: 1px dotted rgb(209, 209, 209);
   background-color: rgb(255, 255, 255);
-  margin:10px 0;
+  margin: 10px 0;
 }
-.productdetial_event{
-  border:1px dotted rgb(209, 209, 209);
-  padding:10px;
+.productdetial_event {
+  border: 1px dotted rgb(209, 209, 209);
+  padding: 10px;
   font-size: 0.9rem;
 }
 
-.company_btn{
-  background-color: #395E97;
+.company_btn {
+  background-color: #395e97;
   width: 100%;
-  margin-top:50px;
-  padding:10px;
+  margin-top: 50px;
+  padding: 10px;
   color: white;
   border: none;
   border-radius: 20px;
 }
-.detail_des_wrap{
- 
-  padding:10px;
-  margin-top:20px;
+.detail_des_wrap {
+  padding: 10px;
+  margin-top: 20px;
 }
-.detail_des{
-  margin:auto;
+.detail_des {
+  margin: auto;
   overflow: scroll;
   height: 200px;
 }
-.datail_des_title{
+.datail_des_title {
   border-bottom: 1px solid rgb(190, 190, 190);
   padding-bottom: 20px;
 }
-.productDetail_img{
+.productDetail_img {
   width: 500px;
   height: 500px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 /* 상품 등록/수정 페이지(product) */
 
-.Product_top_title{
-  margin:2% 0 2% 10%
-
+.Product_top_title {
+  margin: 2% 0 2% 10%;
 }
-.product{
+.product {
   background-color: white;
   width: 80%;
   height: 1800px;
-  padding:20px;
-  margin:auto;
+  padding: 20px;
+  margin: auto;
   text-align: center;
 }
 
-.product_title_box{
-  border:1px solid gray;
+.product_title_box {
+  border: 1px solid gray;
   width: 80%;
-  margin:50px 10%;
-  padding:20px;
+  margin: 50px 10%;
+  padding: 20px;
   height: 150px;
- 
 }
 
-
-
-.product_title_option{
+.product_title_option {
   width: 100%;
-  padding:20px;
+  padding: 20px;
 }
 
-.product_title_img_box{
-  border:1px solid gray;
+.product_title_img_box {
+  border: 1px solid gray;
   width: 80%;
-  margin:20px 10%;
-  padding:20px;
+  margin: 20px 10%;
+  padding: 20px;
   height: 600px;
- 
 }
 
-.title{
+.title {
   display: flex;
   justify-content: start;
-  
-  
 }
-.product_title_des_box{
+.product_title_des_box {
   width: 80%;
-  margin:auto;
-  padding:10px;
-  border:1px solid rgb(0, 0, 0);
-  margin:20px 10%;
-  padding:20px;
+  margin: auto;
+  padding: 10px;
+  border: 1px solid rgb(0, 0, 0);
+  margin: 20px 10%;
+  padding: 20px;
 }
-.product_title_name{
+.product_title_name {
   width: 100%;
-  margin:10px 0;
-  padding:10px;
-  border:1px solid rgb(215, 215, 215);
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid rgb(215, 215, 215);
 }
 
-.product_des{
+.product_des {
   width: 100%;
   height: 500px;
-  border:1px solid rgb(215, 215, 215);
-  margin:10px 0;
+  border: 1px solid rgb(215, 215, 215);
+  margin: 10px 0;
   overflow: scroll;
-  padding:20px;
-  
-
+  padding: 20px;
 }
 
-.product_img_wrap{
+.product_img_wrap {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
 }
 
-#chooseFile{
+#chooseFile {
   visibility: hidden;
 }
-.imgadd_btn{
-  border:1px solid  gray;
-  color:rgb(121, 121, 121);
-  padding:5px;
+.imgadd_btn {
+  border: 1px solid gray;
+  color: rgb(121, 121, 121);
+  padding: 5px;
   cursor: pointer;
 }
 
-.product_title_option_box{
+.product_title_option_box {
   width: 80%;
-  margin:auto;
-  padding:10px;
-  border:1px solid rgb(0, 0, 0);
+  margin: auto;
+  padding: 10px;
+  border: 1px solid rgb(0, 0, 0);
 }
-.product_title_images{
-  text-align:center;
-  display:table;
-  border:1px solid #cecece;
-  width:400px;
-  height:400px;
+.product_title_images {
+  text-align: center;
+  display: table;
+  border: 1px solid #cecece;
+  width: 400px;
+  height: 400px;
 }
-.image_box{
-  display:table-cell;
-  vertical-align:middle;
+.image_box {
+  display: table-cell;
+  vertical-align: middle;
 }
 .images {
-  max-width:300px;
-  max-height:300px;
+  max-width: 300px;
+  max-height: 300px;
 }
-.product_btns{
-  margin:50px ;
+.product_btns {
+  margin: 50px;
 }
-.productbtn{
+.productbtn {
   width: 150px;
   height: 50px;
   margin: 20px;
-  color:rgb(67, 67, 67);
+  color: rgb(67, 67, 67);
   background-color: white;
-  border:1px  solid gray;
-  
+  border: 1px solid gray;
 }
-.image_wrap{
-  border:1px solid rgb(8, 8, 8);
+.image_wrap {
+  border: 1px solid rgb(8, 8, 8);
   width: 80%;
-  margin:auto;
-  padding:20px;
+  margin: auto;
+  padding: 20px;
   height: 500px;
-  margin-top:20px;
+  margin-top: 20px;
 }
-.product_img_btn{
-  border:1px solid gray;
-  padding:10px 20px;
-  margin-top:20px;
+.product_img_btn {
+  border: 1px solid gray;
+  padding: 10px 20px;
+  margin-top: 20px;
 }
 
-.upload_img{
+.upload_img {
   width: 300px;
   height: 300px;
   -o-object-fit: scale-down;
-     object-fit: scale-down;
+  object-fit: scale-down;
 }
 
-.goproduct{
-
-  border:1px solid violet;
-  padding:10px;
+.goproduct {
+  border: 1px solid violet;
+  padding: 10px;
 }
 
 /* 전체 상품 페이지 (productList)*/
 
-.productlist_btn_box{
+.productlist_btn_box {
   display: flex;
   justify-content: end;
   margin-right: 5%;
 }
 .productlist_btn {
-  color: #395E97;
-  padding:10px 20px;
-  border:none;
+  color: #395e97;
+  padding: 10px 20px;
+  border: none;
   font-size: 1.3rem;
 }
-.productList_img{
+.productList_img {
   width: 300px;
   height: 300px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }

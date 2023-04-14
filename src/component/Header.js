@@ -7,7 +7,7 @@ export default function Header() {
   const [productSearch, setProductSearch] = useState([]);
 
   const navigate = useNavigate();
-  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInputs((inputs) => ({ ...inputs, [name]: value }));
@@ -24,11 +24,10 @@ export default function Header() {
     if (e.key === "Enter") {
       let keyword = e.target.value;
       console.log(keyword);
-      
+
       navigate(`/products/?q=${keyword}`);
     }
   };
-
 
   return (
     <div className="header">
