@@ -77,9 +77,10 @@ export default function MyPage() {
 
   const handleSubmitPut = async (e) => {
     e.preventDefault();
-    console.log(address);
+    console.log("handleSubmitPut.address", address);
     dispatch(myInfoUpdateThunk(editedName));
-    console.log(editedName);
+    console.log("handleSubmitPut.editedName", editedName);
+    alert("수정완료");
   };
 
   useEffect(() => {
@@ -88,13 +89,17 @@ export default function MyPage() {
     console.log("my", my);
     console.log("editedName", editedName);
     // 처음에 내정보 가져와서 보여주게 할려고
-    editedName.name = my.name;
-    editedName.phone = my.phone;
-    editedName.companyName = my.company?.name;
-    editedName.address = my.company?.address.address;
-    editedName.companyAdressDetail = my.company?.address.detail;
-    editedName.companyEmail = my.company?.email;
-    editedName.companyPhone = my.company?.phone;
+    editedName.name = my?.name;
+    editedName.phone = my?.phone;
+    editedName.companyName = my?.company?.name;
+    editedName.companyEmail = my?.company?.email;
+    editedName.companyPhone = my?.company?.phone;
+    editedName.postCode = my?.company?.address.postCode;
+    editedName.address = my?.company?.address.address;
+    editedName.extra = my?.company?.address.extra;
+    editedName.companyAdressDetail = my?.company?.address.detail;
+    editedName.latitude = my?.company?.address.location_y;
+    editedName.longitud = my?.company?.address.location_x;
   }, []);
 
   return (
