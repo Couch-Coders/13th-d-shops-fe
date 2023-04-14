@@ -2,29 +2,28 @@ import Carousel from "../component/Carousel";
 import React, { useEffect, useState } from "react";
 import MainPageService from "../service/mainPageService";
 import { Card, List, Descriptions } from "antd";
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import LoadingSpinners from "../component/LoadingSpinners";
 
 const { Meta } = Card;
-const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
 export default function MainPage() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.user);
   const [productNear, setProductNear] = useState([]);
-  const [Loading,setLoading] = useState(false)
+  const [Loading, setLoading] = useState(false);
   const [userLocation, setUserLocation] = useState({
     latitude: 33.450701,
     longitude: 126.570667,
   });
 
-  let my= useSelector((state)=>state.myInfo.myInfo)
-  console.log(my)
-  
+  let my = useSelector((state) => state.myInfo.myInfo);
+  console.log(my);
 
   useEffect(() => {
     // 20230327 jay 현재 위치 받아오기
-    setLoading(true)
+    setLoading(true);
     const script = document.createElement("script");
     script.src =
       "//dapi.kakao.com/v2/maps/sdk.js?appkey=a82d5a4bcbe4e5fdbf1db07d17b4673a&libraries=services";
@@ -82,10 +81,10 @@ export default function MainPage() {
         userLocation.latitude
       );
       //  dispatch(myLocationThunk(userLocation.longitude,userLocation.latitude))
-        
+
       console.log("result", result);
       setProductNear(result.content);
-      setLoading(false)
+      setLoading(false);
     };
 
     // call the function
@@ -97,7 +96,6 @@ export default function MainPage() {
     return () => {
       // console.log("product 가 바뀌기 전..");
     };
-    
   }, [user]);
 
   // useEffect(() => {
@@ -121,10 +119,12 @@ export default function MainPage() {
   //   };
   // }, []);
 
-  if(Loading){
-    return <div>
-      <LoadingSpinners/>
-    </div>
+  if (Loading) {
+    return (
+      <div>
+        <LoadingSpinners />
+      </div>
+    );
   }
 
   return (

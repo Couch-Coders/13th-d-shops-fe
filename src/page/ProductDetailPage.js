@@ -5,10 +5,10 @@ import { myInfoThunk } from "../stores/myInfoSlice";
 import { Container, Row, Col } from "react-bootstrap";
 import ProductService from "../service/productService";
 import LoadingSpinners from "../component/LoadingSpinners";
-const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
 export default function Product_Detail() {
   const [product, setProduct] = useState();
-  const [Loading,setLoading] = useState(false)
+  const [Loading, setLoading] = useState(false);
   const params = useParams();
   const dispatch = useDispatch();
   const my = useSelector((state) => state.myInfo.myInfo);
@@ -20,13 +20,12 @@ export default function Product_Detail() {
   console.log(my);
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     const fetchData = async () => {
       const result = await ProductService.getProduct(params.id);
       console.log("result", result);
       setProduct(result);
-      setLoading(false)
-    
+      setLoading(false);
     };
 
     // call the function
@@ -40,10 +39,12 @@ export default function Product_Detail() {
     };
   }, []);
 
-  if(Loading){
-    return <div>
-      <LoadingSpinners/>
-    </div>
+  if (Loading) {
+    return (
+      <div>
+        <LoadingSpinners />
+      </div>
+    );
   }
 
   return (
@@ -56,8 +57,10 @@ export default function Product_Detail() {
           <Row>
             <Col lg={5}>
               <div>
-                <img className="productDetail_img" src={`${PROXY}${product?.images[0]?.url}`}></img>
-             
+                <img
+                  className="productDetail_img"
+                  src={`${PROXY}${product?.images[0]?.url}`}
+                ></img>
               </div>
             </Col>
             <Col lg={7}>
@@ -82,13 +85,16 @@ export default function Product_Detail() {
                     <strong>판매자 정보</strong>{" "}
                   </h6>
                   <div>
-                    <strong>사업장 이름 </strong> : {product && product.company.name}
+                    <strong>사업장 이름 </strong> :{" "}
+                    {product && product.company.name}
                   </div>
                   <div>
-                    <strong>전화번호 </strong> : {product && product.company.phone}
+                    <strong>전화번호 </strong> :{" "}
+                    {product && product.company.phone}
                   </div>
                   <div>
-                    <strong>이메일 </strong> : {product && product.company.email}
+                    <strong>이메일 </strong> :{" "}
+                    {product && product.company.email}
                   </div>
                   <div>
                     <strong>사업장 주소 </strong> :{" "}
