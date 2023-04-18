@@ -10,7 +10,6 @@
 
 # 시연 연상
 
-[시연영상](https://youtu.be/sKGnBNJr0-0)
 
 # 프로젝트 소개
 
