@@ -8,7 +8,6 @@
 
 [우리동네d-shops](https://d-shops.netlify.app/)
 
-# 시연 연상
 
 
 # 프로젝트 소개
