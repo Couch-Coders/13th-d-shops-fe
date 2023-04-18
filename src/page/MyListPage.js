@@ -25,6 +25,8 @@ export default function MyListPage() {
       .catch(console.error);
   }, []);
 
+
+
   return (
     <div>
       <Row className="mypagelist_box">
@@ -51,7 +53,7 @@ export default function MyListPage() {
                 product.map((item) => {
                   return (
                     <>
-                      <MyPageProductCard item={item} />
+                      <MyPageProductCard item={item} key={item.seq} setProduct={setProduct} product={product} />
                     </>
                   );
                 })}

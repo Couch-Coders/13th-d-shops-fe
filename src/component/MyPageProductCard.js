@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import MypageProductService from "../service/mypageProductService";
 const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
-export default function MyPageProductCard({ item }) {
+export default function MyPageProductCard({item,setProduct,product}) {
+  console.log(product)
+  console.log(setProduct)
   const handleDelete = async (seq) => {
-    const result = await MypageProductService.deleteProduct(seq);
-    console.log(result.con);
+    if(window.confirm('삭제 하시겠습니까?')){
+       await  MypageProductService.deleteProduct(seq)
+    
+    }
+    setProduct(product.filter(item => item.seq !== seq))
+    
+  }
 
-    alert("삭제 되었습니다.");
-    // 다시 불러오기
-  };
+
+  // useEffect(()=>{
+  //   handleDelete()
+  // },[product])
+
+    
+
 
   return (
     <>

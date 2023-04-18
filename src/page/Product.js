@@ -190,10 +190,11 @@ const Product = () => {
               <strong> 노출 상품명 </strong>{" "}
             </div>
             <input
+            required
               type="text"
               name="title"
               value={product.title ?? ""}
-              required
+              
               onChange={handleChange}
               className="product_title_name"
               placeholder="노출 상품명 입력(제품명 + 브랜드명 )"
@@ -216,6 +217,7 @@ const Product = () => {
               name="description"
               value={product.description ?? ""}
               onChange={handleChange}
+              required
             ></textarea>
           </div>
           <div className="product_title_option_box">
@@ -230,6 +232,7 @@ const Product = () => {
                 name="options"
                 value={product.options ?? ""}
                 onChange={handleChange}
+                required
               ></input>
             </div>
           </div>
@@ -255,6 +258,7 @@ const Product = () => {
                 name="file"
                 id="upload-file"
                 accept="image/*"
+                required
                 // onChange={handleChange}
                 onChange={onNewfileupload}
                 style={{ visibility: "hidden" }}
@@ -264,7 +268,7 @@ const Product = () => {
           <div className="product_btns">
             {product.seq ? (
               <button className="productbtn" onClick={handleSubmitPut}>
-                수정
+                저장/수정
               </button>
             ) : (
               <button className="productbtn" onClick={handleSubmitPost}>
@@ -276,13 +280,7 @@ const Product = () => {
             </button>
           </div>
           <div>
-            <label
-              className="goproduct"
-              onClick={() => navigate(`/products/${product?.seq}`)}
-            >
-              {" "}
-              등록한 상품 보러가기{" "}
-            </label>
+            
           </div>
         </div>
       </form>
