@@ -6,20 +6,11 @@ export default function MyPageProductCard({item,setProduct,product}) {
   console.log(product)
   console.log(setProduct)
   const handleDelete = async (seq) => {
-    if(window.confirm('삭제 하시겠습니까?')){
-       await  MypageProductService.deleteProduct(seq)
     
-    }
+    await  MypageProductService.deleteProduct(seq)
     setProduct(product.filter(item => item.seq !== seq))
     
   }
-
-
-  // useEffect(()=>{
-  //   handleDelete()
-  // },[product])
-
-    
 
 
   return (
