@@ -6,7 +6,6 @@
 
 # 도메인주소
 
-[우리동네d-shops](https://d-shops.netlify.app/)
 
 
 
